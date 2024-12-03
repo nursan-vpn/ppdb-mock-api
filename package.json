@@ -1,0 +1,33 @@
+{
+  "name": "ppdb",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsoa spec-and-routes && tsc && redocly build-docs ./build/swagger.json --output ./docs/index.html",
+    "start": "node build/src/server.js"
+  },
+  "volta": {
+    "node": "22.11.0"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.2.0",
+    "@redocly/cli": "^1.25.14",
+    "@types/cors": "^2.8.17",
+    "body-parser": "^1.20.3",
+    "connect-busboy": "^1.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "express-http-proxy": "^2.1.1",
+    "joi": "^17.13.3",
+    "multer": "^1.4.5-lts.1",
+    "tsoa": "^6.5.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/express-http-proxy": "^1.6.6",
+    "@types/node": "^22.9.3",
+    "nodemon": "^3.1.7",
+    "typescript": "^5.7.2"
+  }
+}

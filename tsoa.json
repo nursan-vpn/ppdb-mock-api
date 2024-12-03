@@ -1,0 +1,16 @@
+{
+    "entryFile": "src/app.ts",
+    "noImplicitAdditionalProperties": "throw-on-extras",
+    "controllerPathGlobs": ["src/**/*Controller.ts"],
+    "spec": {
+      "outputDirectory": "build",
+      "specVersion": 3,
+      "description": "PPDB API",
+      "name": "PPDB API",
+      "version": "1.0.0",
+      "license": "Private"
+    },
+    "routes": {
+      "routesDir": "build"
+    }
+  }
