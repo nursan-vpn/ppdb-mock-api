@@ -1,14 +1,15 @@
-import { faker } from "@faker-js/faker/.";
+import { faker } from "@faker-js/faker";
 import { Announcement } from "../type/announcement";
-import { PaginatedResponseEnvelope, ResponseEnvelope } from "../type/response";
-import { Body, Delete, Example, Get, Post, Put, Query, Route, Tags } from "tsoa";
+import { PaginatedResponseEnvelope, ResponseEnvelope, ValidationError } from "../type/response";
+import { Body, Delete, Example, FormField, Get, Post, Put, Query, Response, Route, Tags, UploadedFile } from "tsoa";
+import { generateAnnouncements } from "../faker/generator";
 
-@Route("ppdb/announcements")
+@Route("ppdb/announcements/")
 @Tags("Announcement")
 export class AnnouncementController {
     
     /**
-     * 
+     * Get All Announcements paginated
      * @summary Get all announcements
      */
     @Get("")
@@ -28,7 +29,8 @@ export class AnnouncementController {
                 description: "This is the first announcement",
                 file: "announcement1.pdf",
                 created_at: "2021-01-01T00:00:00Z",
-                updated_at: "2021-01-01T00:00:00Z"
+                updated_at: "2021-01-01T00:00:00Z",
+                created_by: "admin"
             }
         ]
     })
@@ -36,25 +38,17 @@ export class AnnouncementController {
         @Query() page: number = 1,
         @Query() page_size: number = 10
     ): Promise<PaginatedResponseEnvelope<Announcement>> {
+        const data = generateAnnouncements(page_size);
         return {
             code: 200,
             error: false,
             message: "Success",
-            array_count: 1,
-            total_items: 1,
-            page_size: 1,
+            array_count: data.length,
+            total_items: 100,
+            page_size: page_size,
             next: "",
             previous: "",
-            data: [
-                {
-                    id: 1,
-                    title: "Announcement 1",
-                    description: "This is the first announcement",
-                    file: "announcement1.pdf",
-                    created_at: "2021-01-01T00:00:00Z",
-                    updated_at: "2021-01-01T00:00:00Z"
-                }
-            ]
+            data: data
         }
     }
 
@@ -73,7 +67,8 @@ export class AnnouncementController {
             description: "This is the first announcement",
             file: "announcement1.pdf",
             created_at: "2021-01-01T00:00:00Z",
-            updated_at: "2021-01-01T00:00:00Z"
+            updated_at: "2021-01-01T00:00:00Z",
+            created_by: "admin"
         }
     })
     public async getAnnouncement(id: number): Promise<ResponseEnvelope<Announcement>> {
@@ -87,7 +82,8 @@ export class AnnouncementController {
                 description: "This is the first announcement",
                 file: "announcement1.pdf",
                 created_at: "2021-01-01T00:00:00Z",
-                updated_at: "2021-01-01T00:00:00Z"
+                updated_at: "2021-01-01T00:00:00Z",
+                created_by: "admin"
             }
         }
     }
@@ -108,20 +104,36 @@ export class AnnouncementController {
             description: "This is the first announcement",
             file: "announcement1.pdf",
             created_at: "2021-01-01T00:00:00Z",
-            updated_at: "2021-01-01T00:00:00Z"
+            updated_at: "2021-01-01T00:00:00Z",
+            created_by: "admin"
+        }
+    })
+    @Response<ValidationError<AnnouncementPayload>>("400", "Validation Error",{
+        code: 400,
+        error: true,
+        message: "Validation Error",
+        detail: {
+            title: ["Title is required"],
+            description: ["Description is required"]
         }
     })
     public async createAnnouncement(
-        @Body() announcement: Omit<Announcement, "id" | "created_at">
+        @FormField() title: string,
+        @FormField() description: string,
+        @UploadedFile() file?: File | string
     ): Promise<ResponseEnvelope<Announcement>> {
         return {
             code: 200,
             error: false,
             message: "Success",
             data: {
-                ...announcement,
+                id: 1,
+                title: title,
+                description: description,
+                file: faker.internet.url() + "/" + faker.system.fileName(),
                 created_at: faker.date.recent().toISOString(),
-                id: 1
+                updated_at: faker.date.recent().toISOString(),
+                created_by: "admin"
             }
         }
     }
@@ -142,22 +154,37 @@ export class AnnouncementController {
             description: "This is the first announcement",
             file: "announcement1.pdf",
             created_at: "2021-01-01T00:00:00Z",
-            updated_at: "2021-01-01T00:00:00Z"
+            updated_at: "2021-01-01T00:00:00Z",
+            created_by: "admin"
+        }
+    })
+    @Response<ValidationError<AnnouncementPayload>>("400", "Validation Error",{
+        code: 400,
+        error: true,
+        message: "Validation Error",
+        detail: {
+            title: ["Title is required"],
+            description: ["Description is required"]
         }
     })
     public async updateAnnouncement(
         id: number,
-        @Body() announcement: Omit<Announcement, "created_at" | "id">
+        @FormField() title: string,
+        @FormField() description: string,
+        @UploadedFile() file?: File | string
     ): Promise<ResponseEnvelope<Announcement>> {
         return {
             code: 200,
             error: false,
             message: "Success",
             data: {
-                ...announcement,
-                id: 1,
+                title: title,
+                description: description,
+                file: faker.internet.url() + "/" + faker.system.fileName(),
+                id: id,
                 created_at: faker.date.recent().toISOString(),
-                updated_at: faker.date.recent().toISOString()
+                updated_at: faker.date.recent().toISOString(),
+                created_by: "admin"
             }
         }
     }
@@ -179,4 +206,10 @@ export class AnnouncementController {
         }
     }
 
+}
+
+type AnnouncementPayload = {
+    title: string;
+    description: string;
+    file?: File | string;
 }

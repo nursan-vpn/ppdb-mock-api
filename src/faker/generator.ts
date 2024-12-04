@@ -3,6 +3,7 @@ import { RegistrationType, SchoolLevel } from "../type/common";
 import { RegistrationInformation } from "src/type/registration-information";
 import { FAQ } from "../type/faq";
 import { ContactInfo } from "../type/contact";
+import { Announcement } from "src/type/announcement";
 
 export function getRegistrationInfo(count = 10): RegistrationInformation[] {
     let result = [];
@@ -51,5 +52,25 @@ export function generateContactInfo(): ContactInfo {
         instagram: faker.internet.url(),
         facebook: faker.internet.url(),
         website: faker.internet.url()
+    }
+}
+
+export function generateAnnouncements(count = 10): Announcement[] {
+    let result = [];
+    for (let i = 0; i < count; i++) {
+        result.push(generateAnnouncement())
+    }
+    return result;
+}
+
+export function generateAnnouncement(): Announcement {
+    return {
+        id: faker.number.int({ min: 1, max: 100 }),
+        title: faker.lorem.sentence({max: 4, min:2}),
+        description: faker.lorem.paragraph(),
+        file: `${faker.internet.url()}/${faker.system.fileName()}`,
+        created_at: faker.date.recent({days: 10}).toISOString(),
+        updated_at: faker.date.recent().toISOString(),
+        created_by: faker.person.fullName()
     }
 }

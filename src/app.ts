@@ -13,7 +13,7 @@ app.use(proxy("https://backend.portalsiswa.id",{
     const isRegistred = (app._router as IRouter).stack.filter(layer => {
        return layer.name === "bound dispatch"
     }).some((layer) => {
-      return layer.regexp.test(req.url)
+      return layer.regexp.test(req.path)
     })
 
     if (isRegistred) {
