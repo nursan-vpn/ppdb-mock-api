@@ -5,7 +5,7 @@ export type Announcement = {
      * This is an HTML string
      */
     description: string;
-    file: string | File;
+    file?: string | File;
     /**
      * ISO 8601 date-time string
      * @format date-time
