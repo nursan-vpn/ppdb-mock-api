@@ -1,3 +1,4 @@
+import { SchoolLevel } from "../type/common";
 import { PaginatedResponseEnvelope } from "../type/response";
 import { School, SchoolType } from "../type/school";
 import { Controller, Example, Get, Query, Route, Tags } from "tsoa";
@@ -27,7 +28,9 @@ export class SchoolController extends Controller {
                 name: "School 1",
                 npsn: "12345678",
                 type: SchoolType.PRIVATE,
-                accreditation: "A"
+                accreditation: "A",
+                address: "Jl. ABC",
+                level: SchoolLevel.ELEMENTRY
             }
         ]
     })
@@ -35,6 +38,7 @@ export class SchoolController extends Controller {
         @Query() page: number = 1,
         @Query() page_size: number = 10,
         @Query() search?: string,
+        @Query() levels?: SchoolLevel[], // Array of SchoolLevel
     ): Promise<PaginatedResponseEnvelope<School>> {
         return {
             code: 200,
@@ -51,7 +55,9 @@ export class SchoolController extends Controller {
                     name: "School 1",
                     npsn: "12345678",
                     type: SchoolType.PRIVATE,
-                    accreditation: "A"
+                    accreditation: "A",
+                    address: "Jl. ABC",
+                    level: SchoolLevel.ELEMENTRY
                 }
             ]
         }

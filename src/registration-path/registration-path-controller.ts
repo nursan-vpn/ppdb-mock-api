@@ -10,6 +10,7 @@ export class RegistrationPathController extends Controller {
     
     /**
      * Get All Registration Paths paginated
+     * @param levels Array of SchoolLevel 
      * @summary Get all registration paths
      */
     @Get("")
@@ -40,8 +41,8 @@ export class RegistrationPathController extends Controller {
         @Query() page: number = 1,
         @Query() page_size: number = 10,
         @Query() search?: string,
-        @Query() level?: SchoolLevel[], // Array of SchoolLevel
-        @Query() registration_type?: RegistrationType[], // Array of RegistrationType
+        @Query() levels?: SchoolLevel[], // Array of SchoolLevel
+        @Query() registration_types?: RegistrationType[], // Array of RegistrationType
     ): Promise<PaginatedResponseEnvelope<RegistrationPath>> {
         return {
             code: 200,
