@@ -1,3 +1,4 @@
+import { generateSchools } from "../faker/generator";
 import { SchoolLevel } from "../type/common";
 import { PaginatedResponseEnvelope } from "../type/response";
 import { School, SchoolType } from "../type/school";
@@ -40,26 +41,18 @@ export class SchoolController extends Controller {
         @Query() search?: string,
         @Query() levels?: SchoolLevel[], // Array of SchoolLevel
     ): Promise<PaginatedResponseEnvelope<School>> {
+        console.log(levels)
+        const data = generateSchools(page_size, levels)
         return {
             code: 200,
             error: false,
             message: "Success",
-            array_count: 1,
-            total_items: 1,
-            page_size: 1,
+            array_count: data.length,
+            total_items: 100,
+            page_size: page_size,
             next: "",
             previous: "",
-            data: [
-                {
-                    id: 1,
-                    name: "School 1",
-                    npsn: "12345678",
-                    type: SchoolType.PRIVATE,
-                    accreditation: "A",
-                    address: "Jl. ABC",
-                    level: SchoolLevel.ELEMENTRY
-                }
-            ]
+            data: data
         }
     }
 }
