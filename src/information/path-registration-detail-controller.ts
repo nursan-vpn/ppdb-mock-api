@@ -38,7 +38,7 @@ export class PathRegistrationInformationDetailController extends Controller {
         @FormField() registration_information: number,
         @FormField() type: RegistrationInformationDetailType,
         @FormField() description: string,
-        @UploadedFile() document: File,
+        @UploadedFile() document?: File,
     ): Promise<ResponseEnvelope<RegistrationInformationDetail>> {
         const data = generatePathInformation()
         return {
@@ -86,7 +86,7 @@ export class PathRegistrationInformationDetailController extends Controller {
         @FormField() registration_information: number,
         @FormField() type: RegistrationInformationDetailType,
         @FormField() description: string,
-        @UploadedFile() document: File,
+        @UploadedFile() document?: File,
     ): Promise<ResponseEnvelope<RegistrationInformationDetail>> {
         const data = generatePathInformation()
         return {
