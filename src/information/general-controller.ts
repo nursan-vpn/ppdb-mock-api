@@ -23,17 +23,12 @@ export class GeneralInformationController extends Controller {
             picture: "https://example.com/general-information.jpg"
         }
     })
-    public async getGeneralInformation(): Promise<ResponseEnvelope<GeneralInformation>> {
+    public async getGeneralInformation(): Promise<ResponseEnvelope<GeneralInformation | null>> {
         return {
             "code": 200,
             "error": false,
             "message": "",
-            "data": {
-                id: 1,
-                title: "Test General Information",
-                description: "This is a test general information",
-                picture: "https://example.com/general-information.jpg"
-            }
+            "data": null
         }
     }
 

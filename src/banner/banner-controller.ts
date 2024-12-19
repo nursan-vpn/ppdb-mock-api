@@ -41,7 +41,7 @@ export class BannerController extends Controller {
             "message": "",
             "data": null
         }
-        return empty
+        return success
     }
 
     /**

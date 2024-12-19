@@ -5,6 +5,7 @@ import { FAQ } from "../type/faq";
 import { ContactInfo } from "../type/contact";
 import { Announcement } from "../type/announcement";
 import { School, SchoolType } from "../type/school";
+import { RegistrationPath, RegistrationPathStatus } from "../type/registration-path";
 
 export function getRegistrationInfo(count = 10): RegistrationInformation[] {
     let result = [];
@@ -36,7 +37,7 @@ export function generateFaqs(count = 10): FAQ[] {
 export function generateFaq(): FAQ {
     return {
         id: faker.number.int({ min: 1, max: 100 }),
-        title: faker.lorem.sentence({max: 4, min:2}),
+        title: faker.lorem.sentence({ max: 4, min: 2 }),
         description: faker.lorem.paragraph()
     }
 }
@@ -67,10 +68,10 @@ export function generateAnnouncements(count = 10): Announcement[] {
 export function generateAnnouncement(): Announcement {
     return {
         id: faker.number.int({ min: 1, max: 100 }),
-        title: faker.lorem.sentence({max: 4, min:2}),
+        title: faker.lorem.sentence({ max: 4, min: 2 }),
         description: faker.lorem.paragraph(),
         file: `${faker.internet.url()}/${faker.system.fileName()}`,
-        created_at: faker.date.recent({days: 10}).toISOString(),
+        created_at: faker.date.recent({ days: 10 }).toISOString(),
         updated_at: faker.date.recent().toISOString(),
         created_by: faker.person.fullName()
     }
@@ -93,5 +94,27 @@ export function generateSchool(levels?: SchoolLevel[]): School {
         accreditation: faker.helpers.arrayElement(["A", "B", "C"]),
         address: faker.location.streetAddress(),
         level: levels ? faker.helpers.arrayElement(levels) : faker.helpers.enumValue(SchoolLevel)
+    }
+}
+
+export function generateRegistrationPaths(count = 10, levels?: SchoolLevel[], types?: RegistrationType[]): RegistrationPath[] {
+    let result = [];
+    for (let i = 0; i < count; i++) {
+        result.push(generateRegistrationPath(levels, types))
+    }
+    return result;
+}
+
+export function generateRegistrationPath(levels?: SchoolLevel[], types?: RegistrationType[]): RegistrationPath {
+    return {
+        id: faker.number.int({ min: 1, max: 100 }),
+        name: faker.person.jobDescriptor(),
+        level: levels ? faker.helpers.arrayElement(levels) : faker.helpers.enumValue(SchoolLevel),
+        registration_type: types ? faker.helpers.arrayElement(types) : faker.helpers.enumValue(RegistrationType),
+        description: faker.lorem.paragraph(),
+        start_date: faker.date.recent().toISOString(),
+        end_date: faker.date.future().toISOString(),
+        isHavePayment: faker.datatype.boolean(),
+        status: faker.helpers.enumValue(RegistrationPathStatus),
     }
 }

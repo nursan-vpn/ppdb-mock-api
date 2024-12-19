@@ -1,3 +1,4 @@
+import { generateRegistrationPaths } from "../faker/generator";
 import { RegistrationType, SchoolLevel } from "../type/common";
 import { RegistrationPath, RegistrationPathBillingScheduleType, RegistrationPathDetail, RegistrationPathFieldType, RegistrationPathPayload, RegistrationPathPaymentMethod, RegistrationPathStatus } from "../type/registration-path";
 import { PaginatedResponseEnvelope, ResponseEnvelope } from "../type/response";
@@ -44,28 +45,17 @@ export class RegistrationPathController extends Controller {
         @Query() levels?: SchoolLevel[], // Array of SchoolLevel
         @Query() registration_types?: RegistrationType[], // Array of RegistrationType
     ): Promise<PaginatedResponseEnvelope<RegistrationPath>> {
+        const data = generateRegistrationPaths(page_size, levels, registration_types);
         return {
             code: 200,
             error: false,
             message: "Success",
-            array_count: 1,
-            total_items: 1,
-            page_size: 1,
+            array_count: data.length,
+            total_items: 100,
+            page_size: page_size,
             next: "",
             previous: "",
-            data: [
-                {
-                    id: 1,
-                    name: "Path 1",
-                    level: SchoolLevel.ELEMENTRY,
-                    registration_type: RegistrationType.ACHIEVEMENT,
-                    description: "This is the first path",
-                    start_date: "2021-01-01T00:00:00Z",
-                    end_date: "2021-01-01T00:00:00Z",
-                    status: RegistrationPathStatus.ACTIVE,
-                    isHavePayment: false
-                }
-            ]
+            data: data
         }
     }
 
