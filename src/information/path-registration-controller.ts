@@ -2,8 +2,8 @@ import { faker } from "@faker-js/faker";
 import { generatePathInformation, getRegistrationInfo } from "../faker/generator";
 import { RegistrationType, SchoolLevel } from "../type/common";
 import { RegistrationInformation, RegistrationInformationDetailType, RegistrationInformationWithDetails } from "../type/registration-information";
-import { ResponseEnvelope } from "../type/response";
-import { Body, Controller, Example, Get, Post, Put, Route, Tags } from "tsoa";
+import { PaginatedResponseEnvelope, ResponseEnvelope } from "../type/response";
+import { Body, Controller, Example, Get, Post, Put, Query, Route, Tags } from "tsoa";
 
 @Route("/ppdb/registration-information/")
 @Tags("CMS", "Registration Information")
@@ -14,26 +14,41 @@ export class PathRegistrationInformationController extends Controller {
      * @summary Get Registration Information list
      */
     @Get("")
-    @Example<ResponseEnvelope<RegistrationInformation[]>>({
-        "code": 200,
-        "error": false,
-        "message": "",
-        "data": [
-            {
-                id: 1,
-                name: "Test Registration Information",
-                level: SchoolLevel.ELEMENTRY,
-                type: RegistrationType.ZONING
-            }
-        ]
-    })
-    public async getRegistrationInformation(): Promise<ResponseEnvelope<RegistrationInformation[]>> {
-        const data = getRegistrationInfo()
+    @Example<PaginatedResponseEnvelope<RegistrationInformation>>(
+        {
+            "code": 200,
+            "error": false,
+            "message": "",
+            "array_count": 1,
+            "page_size": 10,
+            "total_items": 100,
+            "next": "",
+            "previous": "",
+            "data": [
+                {
+                    id: 1,
+                    name: "Test Registration Information",
+                    level: SchoolLevel.ELEMENTRY,
+                    type: RegistrationType.ZONING
+                }
+            ]
+        }
+    )
+    public async getRegistrationInformation(
+        @Query() page: number = 1,
+        @Query() page_size: number = 10
+    ): Promise<PaginatedResponseEnvelope<RegistrationInformation>> {
+        const data = getRegistrationInfo(page_size)
         return {
             "code": 200,
             "error": false,
             "message": "",
-            "data": data
+            "array_count": data.length,
+            "page_size": page_size,
+            "total_items": 100,
+            "next": "",
+            "previous": "",
+            "data": data,
         }
     }
 
