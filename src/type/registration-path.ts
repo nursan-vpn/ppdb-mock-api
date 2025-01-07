@@ -171,3 +171,25 @@ export interface RegistrationPathDetail extends RegistrationPathPayload {
     hasApplicant: boolean;
 }
 
+export enum RegistrationPathPaymentStatus {
+    CREATED = "CREATED",
+    WAITING_PAYMENT = "WAITING_PAYMENT",
+    PAYMENT_IN_PROGRESS = "PAYMENT_IN_PROGRESS",
+    DISBURSE_IN_PROGRESS = "DISBURSE_IN_PROGRESS",
+    COMPLETE = "COMPLETE",
+    INCOMPLETE = "INCOMPLETE",
+    EXPIRED = "EXPIRED",
+    PAYMENT_FAILED = "PAYMENT_FAILED",
+}
+
+export type RegistrationPathPayment = {
+    id: number;
+    billing_schedule_type: RegistrationPathBillingScheduleType;
+    student_name: string;
+    fee_names: string[];
+    payment_amount: number;
+    payment_date: string;
+    payment_method: string;
+    payment_status: RegistrationPathPaymentStatus;
+    transaction_code: string;
+}

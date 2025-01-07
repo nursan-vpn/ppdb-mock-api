@@ -1,6 +1,6 @@
 import { generateRegistrationPaths } from "../faker/generator";
 import { RegistrationType, SchoolLevel } from "../type/common";
-import { RegistrationPath, RegistrationPathBillingScheduleType, RegistrationPathDetail, RegistrationPathFieldType, RegistrationPathPayload, RegistrationPathPaymentMethod, RegistrationPathStatus } from "../type/registration-path";
+import { RegistrationPath, RegistrationPathBillingScheduleType, RegistrationPathDetail, RegistrationPathFieldType, RegistrationPathPayload, RegistrationPathPayment, RegistrationPathPaymentMethod, RegistrationPathPaymentStatus, RegistrationPathStatus } from "../type/registration-path";
 import { PaginatedResponseEnvelope, ResponseEnvelope } from "../type/response";
 import { Body, Controller, Delete, Example, Get, Post, Put, Query, Route, Response, Tags } from "tsoa";
 
@@ -258,4 +258,66 @@ export class RegistrationPathController extends Controller {
             data: null
         }
     }
+
+
+    /**
+     * Get All Registration Payments paginated
+     * @summary Get all registration payments
+     */
+    @Get("{registrationPathId}/registration-payments")
+    @Example<PaginatedResponseEnvelope<RegistrationPathPayment>>({
+        code: 200,
+        error: false,
+        message: "Success",
+        array_count: 1,
+        total_items: 1,
+        page_size: 1,
+        next: "",
+        previous: "",
+        data: [
+            {
+                id: 1,
+                billing_schedule_type: RegistrationPathBillingScheduleType.PAY_AFTER_ACCEPTANCE,
+                student_name: "John Doe",
+                fee_names: ["Item 1"],
+                payment_amount: 1000000,
+                payment_date: "2021-01-01T00:00:00Z",
+                payment_method: "Bank Transfer",
+                payment_status: RegistrationPathPaymentStatus.COMPLETE,
+                transaction_code: "123456",
+            }
+        ]
+    })
+    async getRegistrationPayment(
+        registrationPathId: number,
+        @Query() page: number = 1,
+        @Query() page_size: number = 10,
+        @Query() billing_schedule_type: RegistrationPathBillingScheduleType,
+        @Query() search?: string,
+    ): Promise<PaginatedResponseEnvelope<RegistrationPathPayment>> {
+       return {
+            code: 200,
+            error: false,
+            message: "Success",
+            array_count: 1,
+            total_items: 1,
+            page_size: 1,
+            next: "",
+            previous: "",
+            data: [
+                {
+                    id: 1,
+                    billing_schedule_type: billing_schedule_type,
+                    student_name: "John Doe",
+                    fee_names: ["Item 1"],
+                    payment_amount: 1000000,
+                    payment_date: "2021-01-01T00:00:00Z",
+                    payment_method: "Bank Transfer",
+                    payment_status: RegistrationPathPaymentStatus.COMPLETE,
+                    transaction_code: "123456",
+                }
+            ]
+        }
+    }
+    
 }
