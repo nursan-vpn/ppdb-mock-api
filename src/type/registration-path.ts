@@ -89,7 +89,10 @@ type RegistrationPathConfig = {
          * Field ordering
          */
         ordering: number;
-    }[]
+
+        isEditable: boolean;
+    }[],
+    isDeleteable: boolean;
 }
 
 /**

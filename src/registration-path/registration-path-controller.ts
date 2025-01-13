@@ -124,10 +124,11 @@ export class RegistrationPathController extends Controller {
                             ordering: 1,
                             title: "Field 1",
                             id: 1,
-
+                            isEditable: true
                         }
                     ],
                     name: "General",
+                    isDeleteable: true
                 }
             ],
             schools: [1,2,3,4,],
@@ -184,10 +185,12 @@ export class RegistrationPathController extends Controller {
                                 ordering: 1,
                                 title: "Field 1",
                                 id: 1,
+                                isEditable: true
 
                             }
                         ],
                         name: "General",
+                        isDeleteable: true
                     }
                 ],
                 schools: [1,2,3,4,],
