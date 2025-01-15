@@ -128,7 +128,8 @@ export class RegistrationPathController extends Controller {
                         }
                     ],
                     name: "General",
-                    isDeleteable: true
+                    isDeleteable: true,
+                    isEditable: true,
                 }
             ],
             schools: [1,2,3,4,],
@@ -190,7 +191,8 @@ export class RegistrationPathController extends Controller {
                             }
                         ],
                         name: "General",
-                        isDeleteable: true
+                        isDeleteable: true,
+                        isEditable: true,
                     }
                 ],
                 schools: [1,2,3,4,],

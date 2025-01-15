@@ -93,6 +93,7 @@ type RegistrationPathConfig = {
         isEditable: boolean;
     }[],
     isDeleteable: boolean;
+    isEditable: boolean;
 }
 
 /**
