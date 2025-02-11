@@ -47,8 +47,17 @@ export class SchoolController extends Controller {
         @Query() levels?: SchoolLevel[], // Array of SchoolLevel
         @Query() ids?: number[],
     ): Promise<PaginatedResponseEnvelope<School>> {
-        console.log(levels)
-        const data = generateSchools(page_size, levels)
+        let data = generateSchools(page_size, levels)
+        
+        if (ids) {
+            data = generateSchools(ids.length, levels);
+
+            data = data.map((school,index) => ({
+                ...school,
+                id: ids[index]
+            }))
+        }
+
         return {
             code: 200,
             error: false,
