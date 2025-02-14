@@ -8,8 +8,8 @@ export const app = express();
 /**
  * Proxy all request to backend.portalsiswa.id except the one that registered
  */
-app.use(proxy("https://backend.portalsiswa.id",{
-  filter(req, res) {
+app.use(proxy("https://backend-v2.portalsiswa.id",{
+  async filter(req, res) {
     const isRegistred = (app._router as IRouter).stack.filter(layer => {
        return layer.name === "bound dispatch"
     }).some((layer) => {

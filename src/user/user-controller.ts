@@ -24,15 +24,10 @@ export class UserController extends Controller {
         @Query() user_type?: UserType[], // Array of UserType
     ): Promise<PaginatedResponseEnvelope<User>> {
         return {
-            code: 200,
-            error: false,
-            message: "Success",
-            array_count: 1,
-            total_items: 1,
-            page_size: 1,
+            count: 432,
             next: "",
             previous: "",
-            data: [
+            results: [
                 {
                     id: 1,
                     type: UserType.ADMIN,

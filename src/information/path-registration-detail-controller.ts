@@ -16,22 +16,17 @@ export class PathRegistrationInformationDetailController extends Controller {
      */
     @Post("")
     @Example<ResponseEnvelope<RegistrationInformationDetail>>({
-        "code": 200,
-        "error": false,
-        "message": "",
-        "data": {
+        id: 1,
+        description: "This is a test registration information detail",
+        document: "https://example.com/registration-information-detail.pdf",
+        registration_information: {
             id: 1,
-            description: "This is a test registration information detail",
-            document: "https://example.com/registration-information-detail.pdf",
-            registration_information: {
-                id: 1,
-                name: "Test Registration Information",
-                level: SchoolLevel.ELEMENTRY,
-                type: RegistrationType.ACHIEVEMENT
-            },
-            title: "Test Registration Information",
-            type: RegistrationInformationDetailType.Requirement
-        }
+            name: "Test Registration Information",
+            level: SchoolLevel.ELEMENTRY,
+            type: RegistrationType.ACHIEVEMENT
+        },
+        title: "Test Registration Information",
+        type: RegistrationInformationDetailType.Requirement
     })
     public async addRegistrationInformationDetail(
         @FormField() title: string,
@@ -42,17 +37,12 @@ export class PathRegistrationInformationDetailController extends Controller {
     ): Promise<ResponseEnvelope<RegistrationInformationDetail>> {
         const data = generatePathInformation()
         return {
-            "code": 200,
-            "error": false,
-            "message": "",
-            "data": {
-                id: 1,
-                description: faker.lorem.paragraph(),
-                document: faker.internet.url() + faker.system.filePath(),
-                registration_information: data,
-                title: "Test Registration Information",
-                type: type
-            }
+            id: 1,
+            description: faker.lorem.paragraph(),
+            document: faker.internet.url() + faker.system.filePath(),
+            registration_information: data,
+            title: "Test Registration Information",
+            type: type
         }
     }
 
@@ -63,22 +53,17 @@ export class PathRegistrationInformationDetailController extends Controller {
      */
     @Put("{id}")
     @Example<ResponseEnvelope<RegistrationInformationDetail>>({
-        "code": 200,
-        "error": false,
-        "message": "",
-        "data": {
+        id: 1,
+        description: "This is a test registration information detail",
+        document: "https://example.com/registration-information-detail.pdf",
+        registration_information: {
             id: 1,
-            description: "This is a test registration information detail",
-            document: "https://example.com/registration-information-detail.pdf",
-            registration_information: {
-                id: 1,
-                name: "Test Registration Information",
-                level: SchoolLevel.ELEMENTRY,
-                type: RegistrationType.ACHIEVEMENT
-            },
-            title: "Test Registration Information",
-            type: RegistrationInformationDetailType.Requirement
-        }
+            name: "Test Registration Information",
+            level: SchoolLevel.ELEMENTRY,
+            type: RegistrationType.ACHIEVEMENT
+        },
+        title: "Test Registration Information",
+        type: RegistrationInformationDetailType.Requirement
     })
     public async updateRegistrationInformationDetail(
         id: number,
@@ -90,17 +75,12 @@ export class PathRegistrationInformationDetailController extends Controller {
     ): Promise<ResponseEnvelope<RegistrationInformationDetail>> {
         const data = generatePathInformation()
         return {
-            "code": 200,
-            "error": false,
-            "message": "",
-            "data": {
-                id: 1,
-                description: faker.lorem.paragraph(),
-                document: faker.internet.url() + faker.system.filePath(),
-                registration_information: data,
-                title: "Test Registration Information",
-                type: type
-            }
+            id: 1,
+            description: faker.lorem.paragraph(),
+            document: faker.internet.url() + faker.system.filePath(),
+            registration_information: data,
+            title: "Test Registration Information",
+            type: type
         }
     }
 }

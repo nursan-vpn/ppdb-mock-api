@@ -13,15 +13,10 @@ export class FaqsController extends Controller {
      */
     @Get("")
     @Example<PaginatedResponseEnvelope<FAQ>>({
-        "code": 200,
-        "error": false,
-        "message": "",
-        "array_count": 1,
-        "page_size": 10,
-        "total_items": 100,
+        count: 200,
         "next": "",
         "previous": "",
-        "data": [
+        "results": [
             {
                 id: 1,
                 title: "Test Question",
@@ -35,15 +30,10 @@ export class FaqsController extends Controller {
     ): Promise<PaginatedResponseEnvelope<FAQ>> {
         const data = generateFaqs(page_size);
         return {
-            code: 200,
-            error: false,
-            message: "",
-            array_count: data.length,
-            page_size: page_size,
-            total_items: 100,
+            count: 200,
             next: "",
             previous: "",
-            data: data,
+            results: data,
         }
     }
 
@@ -54,14 +44,9 @@ export class FaqsController extends Controller {
      */
     @Post("")
     @Example<ResponseEnvelope<FAQ>>({
-        "code": 200,
-        "error": false,
-        "message": "",
-        "data": {
-            id: 1,
-            title: "Test Question",
-            description: "This is a test question",
-        }
+        id: 1,
+        title: "Test Question",
+        description: "This is a test question",
     })
     @Response<ValidationError<FAQ>>(400, "Validation Error", {
         "code": 400,
@@ -79,12 +64,7 @@ export class FaqsController extends Controller {
 
         return new Promise((resolve) => {
             setTimeout(() => {
-                resolve({
-                    code: 200,
-                    error: false,
-                    message: "",
-                    data: data
-                })
+                resolve(data)
             }, 2000)
         })
     }
@@ -95,23 +75,13 @@ export class FaqsController extends Controller {
      */
     @Get("{id}")
     @Example<ResponseEnvelope<FAQ>>({
-        "code": 200,
-        "error": false,
-        "message": "",
-        "data": {
-            id: 1,
-            title: "Test Question",
-            description: "This is a test question",
-        }
+        id: 1,
+        title: "Test Question",
+        description: "This is a test question",
     })
     public async getFaq(id: number): Promise<ResponseEnvelope<FAQ>> {
         const data = generateFaq()
-        return {
-            code: 200,
-            error: false,
-            message: "",
-            data: data
-        }
+        return data
     }
 
     /**
@@ -120,14 +90,9 @@ export class FaqsController extends Controller {
      */
     @Put("{id}")
     @Example<ResponseEnvelope<FAQ>>({
-        "code": 200,
-        "error": false,
-        "message": "",
-        "data": {
-            id: 1,
-            title: "Test Question",
-            description: "This is a test question",
-        }
+        id: 1,
+        title: "Test Question",
+        description: "This is a test question",
     })
     @Response<ValidationError<FAQ>>(400, "Validation Error", {
         "code": 400,
@@ -147,12 +112,7 @@ export class FaqsController extends Controller {
 
         return new Promise((resolve) => {
             setTimeout(() => {
-                resolve({
-                    code: 200,
-                    error: false,
-                    message: "",
-                    data: data
-                })
+                resolve(data)
             }, 2000)
         })
     }
@@ -163,19 +123,9 @@ export class FaqsController extends Controller {
      * @summary Delete FAQ
      */
     @Delete("{id}")
-    @Example<ResponseEnvelope<null>>({
-        "code": 200,
-        "error": false,
-        "message": "",
-        "data": null
-    })
+    @Example<ResponseEnvelope<null>>(null)
     public async deleteFaq(id: number): Promise<ResponseEnvelope<null>> {
-        return {
-            code: 200,
-            error: false,
-            message: "",
-            data: null
-        }
+        return null
     }
 
 }

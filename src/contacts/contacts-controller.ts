@@ -13,28 +13,18 @@ export class ContactController extends Controller {
      */
     @Get("")
     @Example<ResponseEnvelope<ContactInfo>>({
-        "code": 200,
-        "error": false,
-        "message": "",
-        "data": {
-            "address": "Jl. Raya Ciputat Parung No. 1, Ciputat, Tangerang Selatan",
-            "email": "ppdb@example.com",
-            "phone": "021-123456",
-            "alternative_phone": "08123456789",
-            "other_phone": "08123456789",
-            "whatsapp": "628123456789",
-            "instagram": "https://instagram.com/ppdb", // Profil url,
-            "facebook": "https://facebook.com/ppdb", // Profil url,
-            "website": "https://www.ppdb.com",
-        }
+        "address": "Jl. Raya Ciputat Parung No. 1, Ciputat, Tangerang Selatan",
+        "email": "ppdb@example.com",
+        "phone": "021-123456",
+        "alternative_phone": "08123456789",
+        "other_phone": "08123456789",
+        "whatsapp": "628123456789",
+        "instagram": "https://instagram.com/ppdb", // Profil url,
+        "facebook": "https://facebook.com/ppdb", // Profil url,
+        "website": "https://www.ppdb.com",
     })
     public async getContacts(): Promise<ResponseEnvelope<ContactInfo>> {
-        return {
-            "code": 200,
-            "error": false,
-            "message": "",
-            "data": generateContactInfo()
-        }
+        return generateContactInfo()
     }
 
 
@@ -44,32 +34,22 @@ export class ContactController extends Controller {
      */
     @Post("")
     @Example<ResponseEnvelope<ContactInfo>>({
-        "code": 200,
-        "error": false,
-        "message": "",
-        "data": {
-            "address": "Jl. Raya Ciputat Parung No. 1, Ciputat, Tangerang Selatan",
-            "email": "ppdb@example.com",
-            "phone": "021-123456",
-            "alternative_phone": "08123456789",
-            "other_phone": "08123456789",
-            "whatsapp": "628123456789",
-            "instagram": "https://instagram.com/ppdb", // Profil url,
-            "facebook": "https://facebook.com/ppdb", // Profil url,
-            "website": "https://www.ppdb.com",
-        }
+        "address": "Jl. Raya Ciputat Parung No. 1, Ciputat, Tangerang Selatan",
+        "email": "ppdb@example.com",
+        "phone": "021-123456",
+        "alternative_phone": "08123456789",
+        "other_phone": "08123456789",
+        "whatsapp": "628123456789",
+        "instagram": "https://instagram.com/ppdb", // Profil url,
+        "facebook": "https://facebook.com/ppdb", // Profil url,
+        "website": "https://www.ppdb.com",
     })
     public async saveContacts(
         @Body() contact: ContactInfo
     ): Promise<ResponseEnvelope<ContactInfo>> {
         return new Promise((resolve) => {
             setTimeout(() => {
-                resolve({
-                    "code": 200,
-                    "error": false,
-                    "message": "",
-                    "data": generateContactInfo()
-                })
+                resolve(generateContactInfo())
             },2000)
         })
     }

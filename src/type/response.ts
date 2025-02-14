@@ -1,53 +1,19 @@
-export interface ResponseEnvelope<T> {
-    /**
-     * HTTP Response code
-     */
-    code: number;
-    /**
-     * Error flag
-     */
-    error: boolean;
-    /**
-     * Message
-     */
-    message: string;
-    data: T;
-}
+export type ResponseEnvelope<T> = T;
 
 export interface PaginatedResponseEnvelope<T> {
-     /**
-     * HTTP Response code
-     */
-     code: number;
-     /**
-      * Error flag
-      */
-     error: boolean;
-     /**
-      * Message
-      */
-     message: string;
-    /**
-     * Number of the returned items
-     */
-    array_count: number;
     /**
      * Total number of items
      */
-    total_items: number;
-    /**
-     * Number of items per page
-     */
-    page_size: number
+    count: number;
     /**
      * Url of the next page
      */
-    next: string;
+    next: string | null;
     /**
      * Url of the previous page
      */
-    previous: string;
-    data: T[];
+    previous: string | null;
+    results: T[];
 }
 
 

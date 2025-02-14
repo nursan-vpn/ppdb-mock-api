@@ -16,15 +16,10 @@ export class RegistrationPathController extends Controller {
      */
     @Get("")
     @Example<PaginatedResponseEnvelope<RegistrationPath>>({
-        code: 200,
-        error: false,
-        message: "Success",
-        array_count: 1,
-        total_items: 1,
-        page_size: 1,
+        count: 300,
         next: "",
         previous: "",
-        data: [
+        results: [
             {
                 id: 1,
                 name: "Path 1",
@@ -47,15 +42,10 @@ export class RegistrationPathController extends Controller {
     ): Promise<PaginatedResponseEnvelope<RegistrationPath>> {
         const data = generateRegistrationPaths(page_size, levels, registration_types);
         return {
-            code: 200,
-            error: false,
-            message: "Success",
-            array_count: data.length,
-            total_items: 100,
-            page_size: page_size,
+            count: 200,
             next: "",
             previous: "",
-            data: data
+            results: data
         }
     }
 
@@ -68,20 +58,15 @@ export class RegistrationPathController extends Controller {
         @Body() body: RegistrationPathPayload
     ): Promise<ResponseEnvelope<RegistrationPath>> {
         return {
-            code: 200,
-            error: false,
-            message: "Success",
-            data: {
-                id: 1,
-                name: "Path 1",
-                level: SchoolLevel.ELEMENTRY,
-                registration_type: RegistrationType.ACHIEVEMENT,
-                description: "This is the first path",
-                start_date: "2021-01-01T00:00:00Z",
-                end_date: "2021-01-01T00:00:00Z",
-                status: RegistrationPathStatus.ACTIVE,
-                isHavePayment: false
-            }
+            id: 1,
+            name: "Path 1",
+            level: SchoolLevel.ELEMENTRY,
+            registration_type: RegistrationType.ACHIEVEMENT,
+            description: "This is the first path",
+            start_date: "2021-01-01T00:00:00Z",
+            end_date: "2021-01-01T00:00:00Z",
+            status: RegistrationPathStatus.ACTIVE,
+            isHavePayment: false
         }
     }
 
@@ -91,10 +76,63 @@ export class RegistrationPathController extends Controller {
      */
     @Get("{id}")
     @Example<ResponseEnvelope<RegistrationPathDetail>>({
-        code: 200,
-        error: false,
-        message: "Success",
-        data: {
+        id: 1,
+        general: {
+            name: "Path 1",
+            level: SchoolLevel.ELEMENTRY,
+            registration_type: RegistrationType.ACHIEVEMENT,
+            description: "This is the first path",
+            start_date: "2021-01-01T00:00:00Z",
+            end_date: "2021-01-01T00:00:00Z",
+        },
+        configuration: [
+            {
+                id: 1,
+                fields: [
+                    {
+                        fieldType: RegistrationPathFieldType.CHOICE,
+                        isRequired: true,
+                        options: [
+                            {
+                                id: 1,
+                                label: "Option 1"
+                            },
+                            {
+                                id: 2,
+                                label: "Option 2"
+                            }
+                        ],
+                        ordering: 1,
+                        title: "Field 1",
+                        id: 1,
+                        isEditable: true
+                    }
+                ],
+                name: "General",
+                isDeleteable: true,
+                isEditable: true,
+            }
+        ],
+        schools: [1,2,3,4,],
+        paymentConfig: {
+            items: [
+                {
+                    billingScheduleType: RegistrationPathBillingScheduleType.PAY_AFTER_ACCEPTANCE,
+                    name: "Item 1",
+                    price: 1000000,
+                    id: 1
+                }
+            ],
+            paymentMethods: [
+                RegistrationPathPaymentMethod.BANK_TRANSFER
+            ]
+        },
+        hasApplicant: false
+    })
+    async getRegistrationPath(
+        id: number
+    ): Promise<ResponseEnvelope<RegistrationPathDetail>> {
+        return {
             id: 1,
             general: {
                 name: "Path 1",
@@ -125,6 +163,7 @@ export class RegistrationPathController extends Controller {
                             title: "Field 1",
                             id: 1,
                             isEditable: true
+
                         }
                     ],
                     name: "General",
@@ -148,70 +187,6 @@ export class RegistrationPathController extends Controller {
             },
             hasApplicant: false
         }
-    })
-    async getRegistrationPath(
-        id: number
-    ): Promise<ResponseEnvelope<RegistrationPathDetail>> {
-        return {
-            code: 200,
-            error: false,
-            message: "Success",
-            data: {
-                id: 1,
-                general: {
-                    name: "Path 1",
-                    level: SchoolLevel.ELEMENTRY,
-                    registration_type: RegistrationType.ACHIEVEMENT,
-                    description: "This is the first path",
-                    start_date: "2021-01-01T00:00:00Z",
-                    end_date: "2021-01-01T00:00:00Z",
-                },
-                configuration: [
-                    {
-                        id: 1,
-                        fields: [
-                            {
-                                fieldType: RegistrationPathFieldType.CHOICE,
-                                isRequired: true,
-                                options: [
-                                    {
-                                        id: 1,
-                                        label: "Option 1"
-                                    },
-                                    {
-                                        id: 2,
-                                        label: "Option 2"
-                                    }
-                                ],
-                                ordering: 1,
-                                title: "Field 1",
-                                id: 1,
-                                isEditable: true
-
-                            }
-                        ],
-                        name: "General",
-                        isDeleteable: true,
-                        isEditable: true,
-                    }
-                ],
-                schools: [1,2,3,4,],
-                paymentConfig: {
-                    items: [
-                        {
-                            billingScheduleType: RegistrationPathBillingScheduleType.PAY_AFTER_ACCEPTANCE,
-                            name: "Item 1",
-                            price: 1000000,
-                            id: 1
-                        }
-                    ],
-                    paymentMethods: [
-                        RegistrationPathPaymentMethod.BANK_TRANSFER
-                    ]
-                },
-                hasApplicant: false
-            }
-        }
     }
 
 
@@ -225,20 +200,15 @@ export class RegistrationPathController extends Controller {
         @Body() body: RegistrationPathPayload
     ): Promise<ResponseEnvelope<RegistrationPath>> {
         return {
-            code: 200,
-            error: false,
-            message: "Success",
-            data: {
-                id: 1,
-                name: "Path 1",
-                level: SchoolLevel.ELEMENTRY,
-                registration_type: RegistrationType.ACHIEVEMENT,
-                description: "This is the first path",
-                start_date: "2021-01-01T00:00:00Z",
-                end_date: "2021-01-01T00:00:00Z",
-                status: RegistrationPathStatus.ACTIVE,
-                isHavePayment: false
-            }
+            id: 1,
+            name: "Path 1",
+            level: SchoolLevel.ELEMENTRY,
+            registration_type: RegistrationType.ACHIEVEMENT,
+            description: "This is the first path",
+            start_date: "2021-01-01T00:00:00Z",
+            end_date: "2021-01-01T00:00:00Z",
+            status: RegistrationPathStatus.ACTIVE,
+            isHavePayment: false
         }
     }
 
@@ -247,21 +217,11 @@ export class RegistrationPathController extends Controller {
      * @summary Delete a registration path
      */
     @Delete("{id}")
-    @Response<ResponseEnvelope<null>>(400, "Registration Path already have applicants", {
-        code: 400,
-        error: true,
-        message: "Registration Path already have applicants",
-        data: null
-    })
+    @Response<ResponseEnvelope<null>>(400, "Registration Path already have applicants", null)
     async deleteRegistrationPath(
         id: number,
     ): Promise<ResponseEnvelope<null>> {
-        return {
-            code: 200,
-            error: false,
-            message: "Success",
-            data: null
-        }
+        return null
     }
 
 
@@ -271,15 +231,10 @@ export class RegistrationPathController extends Controller {
      */
     @Get("{registrationPathId}/registration-payments")
     @Example<PaginatedResponseEnvelope<RegistrationPathPayment>>({
-        code: 200,
-        error: false,
-        message: "Success",
-        array_count: 1,
-        total_items: 1,
-        page_size: 1,
+       count: 234,
         next: "",
         previous: "",
-        data: [
+        results: [
             {
                 id: 1,
                 billing_schedule_type: RegistrationPathBillingScheduleType.PAY_AFTER_ACCEPTANCE,
@@ -301,15 +256,10 @@ export class RegistrationPathController extends Controller {
         @Query() search?: string,
     ): Promise<PaginatedResponseEnvelope<RegistrationPathPayment>> {
        return {
-            code: 200,
-            error: false,
-            message: "Success",
-            array_count: 1,
-            total_items: 1,
-            page_size: 1,
+            count: 234,
             next: "",
             previous: "",
-            data: [
+            results: [
                 {
                     id: 1,
                     billing_schedule_type: billing_schedule_type,
