@@ -114,7 +114,7 @@ export function generateRegistrationPath(levels?: SchoolLevel[], types?: Registr
         description: faker.lorem.paragraph(),
         start_date: faker.date.recent().toISOString(),
         end_date: faker.date.future().toISOString(),
-        isHavePayment: faker.datatype.boolean(),
+        is_have_payment: faker.datatype.boolean(),
         status: faker.helpers.enumValue(RegistrationPathStatus),
     }
 }

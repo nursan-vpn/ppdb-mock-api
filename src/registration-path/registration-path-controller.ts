@@ -29,7 +29,7 @@ export class RegistrationPathController extends Controller {
                 start_date: "2021-01-01T00:00:00Z",
                 end_date: "2021-01-01T00:00:00Z",
                 status: RegistrationPathStatus.ACTIVE,
-                isHavePayment: false
+                is_have_payment: false
             }
         ]
     })
@@ -66,7 +66,7 @@ export class RegistrationPathController extends Controller {
             start_date: "2021-01-01T00:00:00Z",
             end_date: "2021-01-01T00:00:00Z",
             status: RegistrationPathStatus.ACTIVE,
-            isHavePayment: false
+            is_have_payment: false
         }
     }
 
@@ -90,8 +90,8 @@ export class RegistrationPathController extends Controller {
                 id: 1,
                 fields: [
                     {
-                        fieldType: RegistrationPathFieldType.CHOICE,
-                        isRequired: true,
+                        field_type: RegistrationPathFieldType.CHOICE,
+                        is_required: true,
                         options: [
                             {
                                 id: 1,
@@ -105,29 +105,29 @@ export class RegistrationPathController extends Controller {
                         ordering: 1,
                         title: "Field 1",
                         id: 1,
-                        isEditable: true
+                        is_editable: true
                     }
                 ],
                 name: "General",
-                isDeleteable: true,
-                isEditable: true,
+                is_deleteable: true,
+                is_editable: true,
             }
         ],
         schools: [1,2,3,4,],
-        paymentConfig: {
+        payment_config: {
             items: [
                 {
-                    billingScheduleType: RegistrationPathBillingScheduleType.PAY_AFTER_ACCEPTANCE,
+                    billing_schedule_type: RegistrationPathBillingScheduleType.PAY_AFTER_ACCEPTANCE,
                     name: "Item 1",
                     price: 1000000,
                     id: 1
                 }
             ],
-            paymentMethods: [
+            payment_methods: [
                 RegistrationPathPaymentMethod.BANK_TRANSFER
             ]
         },
-        hasApplicant: false
+        has_applicant: false
     })
     async getRegistrationPath(
         id: number
@@ -147,8 +147,8 @@ export class RegistrationPathController extends Controller {
                     id: 1,
                     fields: [
                         {
-                            fieldType: RegistrationPathFieldType.CHOICE,
-                            isRequired: true,
+                            field_type: RegistrationPathFieldType.CHOICE,
+                            is_required: true,
                             options: [
                                 {
                                     id: 1,
@@ -162,30 +162,30 @@ export class RegistrationPathController extends Controller {
                             ordering: 1,
                             title: "Field 1",
                             id: 1,
-                            isEditable: true
+                            is_editable: true
 
                         }
                     ],
                     name: "General",
-                    isDeleteable: true,
-                    isEditable: true,
+                    is_deleteable: true,
+                    is_editable: true,
                 }
             ],
             schools: [1,2,3,4,],
-            paymentConfig: {
+            payment_config: {
                 items: [
                     {
-                        billingScheduleType: RegistrationPathBillingScheduleType.PAY_AFTER_ACCEPTANCE,
+                        billing_schedule_type: RegistrationPathBillingScheduleType.PAY_AFTER_ACCEPTANCE,
                         name: "Item 1",
                         price: 1000000,
                         id: 1
                     }
                 ],
-                paymentMethods: [
+                payment_methods: [
                     RegistrationPathPaymentMethod.BANK_TRANSFER
                 ]
             },
-            hasApplicant: false
+            has_applicant: false
         }
     }
 
@@ -208,7 +208,7 @@ export class RegistrationPathController extends Controller {
             start_date: "2021-01-01T00:00:00Z",
             end_date: "2021-01-01T00:00:00Z",
             status: RegistrationPathStatus.ACTIVE,
-            isHavePayment: false
+            is_have_payment: false
         }
     }
 

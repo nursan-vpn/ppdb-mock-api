@@ -32,7 +32,7 @@ export type RegistrationPath = {
     /**
      * Boolean value indicating whether the registration path has payment or not.
      */
-    isHavePayment: boolean;
+    is_have_payment: boolean;
 }
 
 
@@ -66,12 +66,12 @@ type RegistrationPathConfig = {
         /**
          * Boolean value indicating whether the field is required or not.
          */
-        isRequired: boolean;
+        is_required: boolean;
         /**
          * Field type
          * 0 = Text, 1 = Number, 2 = Choice, 3 = Multiple Choice, 4 = Date, 5 = Document
          */
-        fieldType: RegistrationPathFieldType;
+        field_type: RegistrationPathFieldType;
         /**
          * List of options for the field. Only applicable for field type 2 and 3.
          */
@@ -90,10 +90,10 @@ type RegistrationPathConfig = {
          */
         ordering: number;
 
-        isEditable: boolean;
+        is_editable: boolean;
     }[],
-    isDeleteable: boolean;
-    isEditable: boolean;
+    is_deleteable: boolean;
+    is_editable: boolean;
 }
 
 /**
@@ -126,12 +126,12 @@ type RegistrationPathPaymentConfig = {
          * When the payment should be made.
          * 0 = Pay at registration, 1 = Pay after acceptance
          */
-        billingScheduleType: RegistrationPathBillingScheduleType;
+        billing_schedule_type: RegistrationPathBillingScheduleType;
     }[],
     /**
      * List of payment methods available for the registration path.
      */
-    paymentMethods: RegistrationPathPaymentMethod[];
+    payment_methods: RegistrationPathPaymentMethod[];
 }
 
 export interface RegistrationPathPayload {
@@ -164,7 +164,7 @@ export interface RegistrationPathPayload {
      * List of school IDs that are associated with the registration path (Step 3)
      */
     schools: number[];
-    paymentConfig?: RegistrationPathPaymentConfig;
+    payment_config?: RegistrationPathPaymentConfig;
 }
 
 
@@ -172,7 +172,7 @@ export interface RegistrationPathDetail extends RegistrationPathPayload {
     /**
      * Boolean value indicating whether the registration path has applicant or not.
      */
-    hasApplicant: boolean;
+    has_applicant: boolean;
 }
 
 export enum RegistrationPathPaymentStatus {
