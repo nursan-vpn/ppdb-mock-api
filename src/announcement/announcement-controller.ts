@@ -93,6 +93,12 @@ export class AnnouncementController {
             description: ["Description is required"]
         }
     })
+    @Response<ValidationError<AnnouncementPayload>>("400", "Duplicate Title",{
+        code: 400,
+        error: true,
+        message: "Title is duplicate",
+        detail: {}
+    })
     public async createAnnouncement(
         @FormField() title: string,
         @FormField() description: string,
