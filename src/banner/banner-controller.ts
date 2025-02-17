@@ -1,6 +1,6 @@
 import { Banner } from "../type/banner";
 import { ResponseEnvelope } from "../type/response";
-import { Body, Controller, Example, FormField, Get, Post, Put, Response, Route, Security, Tags, UploadedFile } from "tsoa";
+import { Body, Controller, Example, FormField, Get, Patch, Post, Put, Response, Route, Security, Tags, UploadedFile } from "tsoa";
 
 @Route("ppdb/banner")
 @Tags("CMS", "Banner")
@@ -61,7 +61,7 @@ export class BannerController extends Controller {
      * Update a PPDB Banner
      * @summary Update Banner
      */
-    @Put("{id}")
+    @Patch("{id}")
     @Example<ResponseEnvelope<Banner>>({
         id: 1,
         title: "Test Banner",

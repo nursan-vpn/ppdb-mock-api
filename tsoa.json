@@ -11,6 +11,7 @@
       "license": "Private"
     },
     "routes": {
-      "routesDir": "build"
+      "routesDir": "build",
+      "authenticationModule": "src/authentication.ts"
     }
   }

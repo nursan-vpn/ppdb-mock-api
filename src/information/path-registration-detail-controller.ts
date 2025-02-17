@@ -1,5 +1,5 @@
 import { RegistrationInformationDetail, RegistrationInformationDetailType } from "../type/registration-information";
-import { Body, Controller, Example, FormField, Post, Put, Route, Tags, UploadedFile } from "tsoa";
+import { Body, Controller, Example, FormField, Patch, Post, Put, Route, Tags, UploadedFile } from "tsoa";
 import { ResponseEnvelope } from "../type/response";
 import { faker } from "@faker-js/faker";
 import { generatePathInformation } from "../faker/generator";
@@ -51,7 +51,7 @@ export class PathRegistrationInformationDetailController extends Controller {
      * @param registration_information ID of the registration information
      * @summary Update Registration Information Detail
      */
-    @Put("{id}")
+    @Patch("{id}")
     @Example<ResponseEnvelope<RegistrationInformationDetail>>({
         id: 1,
         description: "This is a test registration information detail",
