@@ -15,30 +15,22 @@ export interface ResponseEnvelope<T> {
 }
 
 export interface PaginatedResponseEnvelope<T> {
-     /**
-     * HTTP Response code
-     */
-     code: number;
-     /**
-      * Error flag
-      */
-     error: boolean;
-     /**
-      * Message
-      */
-     message: string;
     /**
-     * Number of the returned items
+    * HTTP Response code
+    */
+    code: number;
+    /**
+     * Error flag
      */
-    array_count: number;
+    error: boolean;
+    /**
+     * Message
+     */
+    message: string;
     /**
      * Total number of items
      */
-    total_items: number;
-    /**
-     * Number of items per page
-     */
-    page_size: number
+    count: number;
     /**
      * Url of the next page
      */

@@ -27,9 +27,7 @@ export class UserController extends Controller {
             code: 200,
             error: false,
             message: "Success",
-            array_count: 1,
-            total_items: 1,
-            page_size: 1,
+            count: 100,
             next: "",
             previous: "",
             data: [
