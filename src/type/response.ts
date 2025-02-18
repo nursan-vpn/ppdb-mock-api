@@ -1,19 +1,53 @@
-export type ResponseEnvelope<T> = T;
+export interface ResponseEnvelope<T> {
+    /**
+     * HTTP Response code
+     */
+    code: number;
+    /**
+     * Error flag
+     */
+    error: boolean;
+    /**
+     * Message
+     */
+    message: string;
+    data: T;
+}
 
 export interface PaginatedResponseEnvelope<T> {
+     /**
+     * HTTP Response code
+     */
+     code: number;
+     /**
+      * Error flag
+      */
+     error: boolean;
+     /**
+      * Message
+      */
+     message: string;
+    /**
+     * Number of the returned items
+     */
+    array_count: number;
     /**
      * Total number of items
      */
-    count: number;
+    total_items: number;
+    /**
+     * Number of items per page
+     */
+    page_size: number
     /**
      * Url of the next page
      */
-    next: string | null;
+    next: string;
     /**
      * Url of the previous page
      */
-    previous: string | null;
-    results: T[];
+    previous: string;
+    data: T[];
 }
 
 

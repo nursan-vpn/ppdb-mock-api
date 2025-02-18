@@ -12,20 +12,35 @@ export class BannerController extends Controller {
      */
     @Get("")
     @Example<ResponseEnvelope<Banner>>({
-        id: 1,
-        title: "Test Banner",
-        description: "This is a test banner",
-        picture: "https://example.com/banner.jpg"
-    })
-    public async getBanner(): Promise<ResponseEnvelope<Banner | null>> {
-        const success = {
+        "code": 200,
+        "error": false,
+        "message": "",
+        "data": {
             id: 1,
             title: "Test Banner",
             description: "This is a test banner",
             picture: "https://example.com/banner.jpg"
         }
+    })
+    public async getBanner(): Promise<ResponseEnvelope<Banner | null>> {
+        const success = {
+            "code": 200,
+            "error": false,
+            "message": "",
+            "data": {
+                id: 1,
+                title: "Test Banner",
+                description: "This is a test banner",
+                picture: "https://example.com/banner.jpg"
+            }
+        }
     
-        const empty = null;
+        const empty = {
+            "code": 200,
+            "error": false,
+            "message": "",
+            "data": null
+        }
         return success
     }
 
@@ -35,13 +50,23 @@ export class BannerController extends Controller {
      */
     @Post("")
     @Example<ResponseEnvelope<Banner>>({
-        id: 1,
-        title: "Test Banner",
-        description: "This is a test banner",
-        picture: "https://example.com/banner.jpg"
+        "code": 200,
+        "error": false,
+        "message": "",
+        "data": {
+            id: 1,
+            title: "Test Banner",
+            description: "This is a test banner",
+            picture: "https://example.com/banner.jpg"
+        }
     })
     @Response<ResponseEnvelope<{banner_duplicated: string}>>(403, "Banner already exist", {
-        banner_duplicated: "Only one banner allowed on each province/city/foundation and school level (Elementary School, Middle School, High School)"
+        "code": 403,
+        "error": true,
+        "message": "Only one banner allowed on each province/city/foundation and school level (Elementary School, Middle School, High School)",
+        "data": {
+            banner_duplicated: "Only one banner allowed on each province/city/foundation and school level (Elementary School, Middle School, High School)"
+        }
     })
     public async createBanner(
         @FormField() title: string,
@@ -49,10 +74,15 @@ export class BannerController extends Controller {
         @UploadedFile() picture: File
     ): Promise<ResponseEnvelope<Banner>> {
         const success = {
-            id: 1,
-            title: "Test Banner",
-            description: "This is a test banner",
-            picture: "https://example.com/banner.jpg"
+            "code": 200,
+            "error": false,
+            "message": "Success",
+            "data": {
+                id: 1,
+                title: "Test Banner",
+                description: "This is a test banner",
+                picture: "https://example.com/banner.jpg"
+            }
         }
         return success
     }
@@ -63,10 +93,15 @@ export class BannerController extends Controller {
      */
     @Patch("{id}")
     @Example<ResponseEnvelope<Banner>>({
-        id: 1,
-        title: "Test Banner",
-        description: "This is a test banner",
-        picture: "https://example.com/banner.jpg"
+        "code": 200,
+        "error": false,
+        "message": "",
+        "data": {
+            id: 1,
+            title: "Test Banner",
+            description: "This is a test banner",
+            picture: "https://example.com/banner.jpg"
+        }
     })
     public async updateBanner(
         id: number,
@@ -75,10 +110,15 @@ export class BannerController extends Controller {
         @UploadedFile() picture: string | File
     ): Promise<ResponseEnvelope<Banner>> {
         const success = {
-            id: 1,
-            title: "Test Banner",
-            description: "This is a test banner",
-            picture: "https://example.com/banner.jpg"
+            "code": 200,
+            "error": false,
+            "message": "Success",
+            "data": {
+                id: 1,
+                title: "Test Banner",
+                description: "This is a test banner",
+                picture: "https://example.com/banner.jpg"
+            }
         }
         return success
     }

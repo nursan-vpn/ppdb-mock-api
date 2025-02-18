@@ -11,7 +11,7 @@ app.use(cors())
  * Proxy all request to backend.portalsiswa.id except the one that registered
  */
 app.use(proxy("https://backend.portalsiswa.id",{
-  async filter(req, res) {
+  filter(req, res) {
     const isRegistred = (app._router as IRouter).stack.filter(layer => {
        return layer.name === "bound dispatch"
     }).some((layer) => {

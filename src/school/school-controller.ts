@@ -20,10 +20,15 @@ export class SchoolController extends Controller {
      */
     @Get("")
     @Example<PaginatedResponseEnvelope<School>>({
-        count: 333,
+        code: 200,
+        error: false,
+        message: "Success",
+        array_count: 1,
+        total_items: 1,
+        page_size: 1,
         next: "",
         previous: "",
-        results: [
+        data: [
             {
                 id: 1,
                 name: "School 1",
@@ -54,10 +59,15 @@ export class SchoolController extends Controller {
         }
 
         return {
-            count: 123,
+            code: 200,
+            error: false,
+            message: "Success",
+            array_count: data.length,
+            total_items: 100,
+            page_size: page_size,
             next: "",
             previous: "",
-            results: data
+            data: data
         }
     }
 

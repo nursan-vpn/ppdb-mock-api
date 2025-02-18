@@ -13,17 +13,22 @@ export class GeneralInformationController extends Controller {
      */
     @Get("")
     @Example<ResponseEnvelope<GeneralInformation>>({
-        id: 1,
-        title: "Test General Information",
-        description: "This is a test general information",
-        picture: "https://example.com/general-information.jpg"
-    })
-    public async getGeneralInformation(): Promise<ResponseEnvelope<GeneralInformation | null>> {
-        return {
+        "code": 200,
+        "error": false,
+        "message": "",
+        "data": {
             id: 1,
             title: "Test General Information",
             description: "This is a test general information",
             picture: "https://example.com/general-information.jpg"
+        }
+    })
+    public async getGeneralInformation(): Promise<ResponseEnvelope<GeneralInformation | null>> {
+        return {
+            "code": 200,
+            "error": false,
+            "message": "",
+            "data": null
         }
     }
 
@@ -33,10 +38,15 @@ export class GeneralInformationController extends Controller {
      */
     @Post("")
     @Example<ResponseEnvelope<GeneralInformation>>({
-        id: 1,
-        title: "Test General Information",
-        description: "This is a test general information",
-        picture: "https://example.com/general-information.jpg"
+        "code": 200,
+        "error": false,
+        "message": "",
+        "data": {
+            id: 1,
+            title: "Test General Information",
+            description: "This is a test general information",
+            picture: "https://example.com/general-information.jpg"
+        }
     })
     @Response<ValidationError<GeneralInformation>>(400, "Validation Error", {
         "code": 400,
@@ -55,10 +65,15 @@ export class GeneralInformationController extends Controller {
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve({
-                    id: 1,
-                    title: title,
-                    description: description,
-                    picture: "https://example.com/general-information.jpg"
+                    "code": 200,
+                    "error": false,
+                    "message": "",
+                    "data": {
+                        id: 1,
+                        title: title,
+                        description: description,
+                        picture: "https://example.com/general-information.jpg"
+                    }
                 })
             }, 2000)
         })

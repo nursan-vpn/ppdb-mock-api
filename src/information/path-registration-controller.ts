@@ -16,10 +16,15 @@ export class PathRegistrationInformationController extends Controller {
     @Get("")
     @Example<PaginatedResponseEnvelope<RegistrationInformation>>(
         {
-            count: 200,
+            "code": 200,
+            "error": false,
+            "message": "",
+            "array_count": 1,
+            "page_size": 10,
+            "total_items": 100,
             "next": "",
             "previous": "",
-            "results": [
+            "data": [
                 {
                     id: 1,
                     name: "Test Registration Information",
@@ -35,10 +40,15 @@ export class PathRegistrationInformationController extends Controller {
     ): Promise<PaginatedResponseEnvelope<RegistrationInformation>> {
         const data = getRegistrationInfo(page_size)
         return {
-           count: 300,
+            "code": 200,
+            "error": false,
+            "message": "",
+            "array_count": data.length,
+            "page_size": page_size,
+            "total_items": 100,
             "next": "",
             "previous": "",
-            "results": data,
+            "data": data,
         }
     }
 
@@ -49,25 +59,30 @@ export class PathRegistrationInformationController extends Controller {
      */
     @Get("{id}")
     @Example<ResponseEnvelope<RegistrationInformationWithDetails>>({
-        id: 1,
-        name: "Test Registration Information",
-        level: SchoolLevel.ELEMENTRY,
-        type: RegistrationType.ZONING,
-        registration_details: [
-            {
-                id: 1,
-                registration_information: {
+        "code": 200,
+        "error": false,
+        "message": "",
+        "data": {
+            id: 1,
+            name: "Test Registration Information",
+            level: SchoolLevel.ELEMENTRY,
+            type: RegistrationType.ZONING,
+            registration_details: [
+                {
                     id: 1,
-                    name: "Test Registration Information",
-                    level: SchoolLevel.ELEMENTRY,
-                    type: RegistrationType.ZONING
-                },
-                type: RegistrationInformationDetailType.Requirement,
-                title: "Syarat Pendaftaran",
-                description: "This is a test registration information",
-                document: "https://example.com/registration-information.jpg"
-            }
-        ]
+                    registration_information: {
+                        id: 1,
+                        name: "Test Registration Information",
+                        level: SchoolLevel.ELEMENTRY,
+                        type: RegistrationType.ZONING
+                    },
+                    type: RegistrationInformationDetailType.Requirement,
+                    title: "Syarat Pendaftaran",
+                    description: "This is a test registration information",
+                    document: "https://example.com/registration-information.jpg"
+                }
+            ]
+        }
     })
     public async getRegistrationInformationById(id: number): Promise<ResponseEnvelope<RegistrationInformationWithDetails>> {
         const data = generatePathInformation()
@@ -84,7 +99,12 @@ export class PathRegistrationInformationController extends Controller {
                 }
             ]
         }
-        return detail
+        return {
+            "code": 200,
+            "error": false,
+            "message": "",
+            "data": detail
+        }
     }
 
 
@@ -94,16 +114,26 @@ export class PathRegistrationInformationController extends Controller {
      */
     @Post("")
     @Example<ResponseEnvelope<RegistrationInformation>>({
-        id: 1,
-        name: "Test Registration Information",
-        level: SchoolLevel.ELEMENTRY,
-        type: RegistrationType.ZONING
+        "code": 200,
+        "error": false,
+        "message": "",
+        "data": {
+            id: 1,
+            name: "Test Registration Information",
+            level: SchoolLevel.ELEMENTRY,
+            type: RegistrationType.ZONING
+        }
     })
     public async createRegistrationInformation(
         @Body() payload: Omit<RegistrationInformation, "id">
     ): Promise<ResponseEnvelope<RegistrationInformation>> {
         const data = generatePathInformation()
-        return data
+        return {
+            "code": 200,
+            "error": false,
+            "message": "",
+            "data": data
+        }
     }
 
     /**
@@ -112,16 +142,26 @@ export class PathRegistrationInformationController extends Controller {
      */
     @Put("{id}")
     @Example<ResponseEnvelope<RegistrationInformation>>({
-        id: 1,
-        name: "Test Registration Information",
-        level: SchoolLevel.ELEMENTRY,
-        type: RegistrationType.ZONING
+        "code": 200,
+        "error": false,
+        "message": "",
+        "data": {
+            id: 1,
+            name: "Test Registration Information",
+            level: SchoolLevel.ELEMENTRY,
+            type: RegistrationType.ZONING
+        }
     })
     public async updateRegistrationInformation(
         id: number,
         @Body() payload: Omit<RegistrationInformation, "id">
     ): Promise<ResponseEnvelope<RegistrationInformation>> {
         const data = generatePathInformation()
-        return data
+        return {
+            "code": 200,
+            "error": false,
+            "message": "",
+            "data": data
+        }
     }
 }
