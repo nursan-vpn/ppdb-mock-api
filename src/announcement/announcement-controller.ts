@@ -108,7 +108,7 @@ export class AnnouncementController {
         code: 400,
         error: true,
         message: "Validation Error",
-        detail: {
+        data: {
             title: ["Title is required"],
             description: ["Description is required"]
         }
@@ -117,7 +117,7 @@ export class AnnouncementController {
         code: 400,
         error: true,
         message: "Title is duplicate",
-        detail: {}
+        data: {}
     })
     public async createAnnouncement(
         @FormField() title: string,
@@ -164,7 +164,7 @@ export class AnnouncementController {
         code: 400,
         error: true,
         message: "Validation Error",
-        detail: {
+        data: {
             title: ["Title is required"],
             description: ["Description is required"]
         }

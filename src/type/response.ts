@@ -59,7 +59,7 @@ export interface ValidationError<T> {
     /**
      * Key value pair of field and error messages
      */
-    detail: {
+    data: {
         [field in keyof T]?: string[];
     };
 }

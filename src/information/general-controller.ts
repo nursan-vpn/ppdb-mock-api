@@ -52,7 +52,7 @@ export class GeneralInformationController extends Controller {
         "code": 400,
         "error": true,
         "message": "Validation Error",
-        "detail": {
+        "data": {
             "title": ["Title is required"],
             "description": ["Description is required"]
         }
