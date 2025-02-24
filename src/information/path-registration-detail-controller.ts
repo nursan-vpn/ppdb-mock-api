@@ -27,7 +27,8 @@ export class PathRegistrationInformationDetailController extends Controller {
                 id: 1,
                 name: "Test Registration Information",
                 level: SchoolLevel.ELEMENTRY,
-                type: RegistrationType.ACHIEVEMENT
+                type: RegistrationType.ACHIEVEMENT,
+                quota: 50
             },
             title: "Test Registration Information",
             type: RegistrationInformationDetailType.Requirement
@@ -74,7 +75,8 @@ export class PathRegistrationInformationDetailController extends Controller {
                 id: 1,
                 name: "Test Registration Information",
                 level: SchoolLevel.ELEMENTRY,
-                type: RegistrationType.ACHIEVEMENT
+                type: RegistrationType.ACHIEVEMENT,
+                quota: 50
             },
             title: "Test Registration Information",
             type: RegistrationInformationDetailType.Requirement

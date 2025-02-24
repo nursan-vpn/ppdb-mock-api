@@ -21,7 +21,8 @@ export function generatePathInformation(): RegistrationInformation {
         id: faker.number.int({ min: 1, max: 100 }),
         name: faker.person.jobDescriptor(),
         level: faker.helpers.enumValue(SchoolLevel),
-        type: faker.helpers.enumValue(RegistrationType)
+        type: faker.helpers.enumValue(RegistrationType),
+        quota: faker.number.int({ min: 1, max: 100 })
     }
 }
 

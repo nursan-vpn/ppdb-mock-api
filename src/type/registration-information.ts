@@ -30,6 +30,13 @@ export interface RegistrationInformation {
 	name: string;
 	level: SchoolLevel;
 	type: RegistrationType;
+	/**
+	 * The quota percentage information for the registration path.
+	 * @maximum 100
+	 * @minimum 1
+	 * @isInt
+	 */
+	quota: number;
 }
 
 export interface RegistrationInformationWithDetails extends RegistrationInformation {

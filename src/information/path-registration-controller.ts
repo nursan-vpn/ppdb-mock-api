@@ -27,7 +27,8 @@ export class PathRegistrationInformationController extends Controller {
                     id: 1,
                     name: "Test Registration Information",
                     level: SchoolLevel.ELEMENTRY,
-                    type: RegistrationType.ZONING
+                    type: RegistrationType.ZONING,
+                    quota: 50
                 }
             ]
         }
@@ -70,14 +71,16 @@ export class PathRegistrationInformationController extends Controller {
                         id: 1,
                         name: "Test Registration Information",
                         level: SchoolLevel.ELEMENTRY,
-                        type: RegistrationType.ZONING
+                        type: RegistrationType.ZONING,
+                        quota: 50
                     },
                     type: RegistrationInformationDetailType.Requirement,
                     title: "Syarat Pendaftaran",
                     description: "This is a test registration information",
                     document: "https://example.com/registration-information.jpg"
                 }
-            ]
+            ],
+            quota: 50
         }
     })
     public async getRegistrationInformationById(id: number): Promise<ResponseEnvelope<RegistrationInformationWithDetails>> {
@@ -117,7 +120,8 @@ export class PathRegistrationInformationController extends Controller {
             id: 1,
             name: "Test Registration Information",
             level: SchoolLevel.ELEMENTRY,
-            type: RegistrationType.ZONING
+            type: RegistrationType.ZONING,
+            quota: 50
         }
     })
     public async createRegistrationInformation(
@@ -145,7 +149,8 @@ export class PathRegistrationInformationController extends Controller {
             id: 1,
             name: "Test Registration Information",
             level: SchoolLevel.ELEMENTRY,
-            type: RegistrationType.ZONING
+            type: RegistrationType.ZONING,
+            quota: 50
         }
     })
     public async updateRegistrationInformation(
