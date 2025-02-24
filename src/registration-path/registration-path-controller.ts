@@ -157,10 +157,10 @@ export class RegistrationPathController extends Controller {
                 general: {
                     name: "Path 1",
                     level: SchoolLevel.ELEMENTRY,
-                    registration_type: RegistrationType.ACHIEVEMENT,
+                    registration_type: RegistrationType.AFFIRMATION,
                     description: "This is the first path",
                     start_date: "2021-01-01T00:00:00Z",
-                    end_date: "2021-01-01T00:00:00Z",
+                    end_date: "2021-02-01T00:00:00Z",
                 },
                 configuration: [
                     {

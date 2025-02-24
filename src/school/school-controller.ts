@@ -43,16 +43,16 @@ export class SchoolController extends Controller {
         @Query() page_size: number = 10,
         @Query() search?: string,
         @Query() levels?: SchoolLevel[], // Array of SchoolLevel
-        @Query() ids?: number[],
+        @Query() ids?: string,
     ): Promise<PaginatedResponseEnvelope<School>> {
         let data = generateSchools(page_size, levels)
-        
+        let schoolIds = ids?.split(",").map(id => parseInt(id)) ?? [];
         if (ids) {
-            data = generateSchools(ids.length, levels);
+            data = generateSchools(schoolIds.length, levels);
 
             data = data.map((school,index) => ({
                 ...school,
-                id: ids[index]
+                id: schoolIds[index]
             }))
         }
 
