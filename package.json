@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsoa spec-and-routes && tsc && redocly build-docs ./build/swagger.json --output ./docs/index.html",
+    "build": "tsoa spec-and-routes && tsc && redocly build-docs ./build/swagger.json --output ./docs/index.html && cp ./build/swagger.json ./docs/swagger.json",
     "start": "node build/src/server.js"
   },
   "volta": {
