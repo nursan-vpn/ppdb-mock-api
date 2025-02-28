@@ -5,7 +5,7 @@ import { faker } from "@faker-js/faker";
 import { generatePathInformation } from "../faker/generator";
 import { RegistrationType, SchoolLevel } from "../type/common";
 
-@Route("/ppdb/registration-detail/")
+@Route("v2/ppdb/registration-detail/")
 @Tags("CMS", "Registration Information")
 export class PathRegistrationInformationDetailController extends Controller {
 

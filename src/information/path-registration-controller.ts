@@ -5,7 +5,7 @@ import { RegistrationInformation, RegistrationInformationDetailType, Registratio
 import { PaginatedResponseEnvelope, ResponseEnvelope } from "../type/response";
 import { Body, Controller, Example, Get, Post, Put, Query, Route, Tags } from "tsoa";
 
-@Route("/ppdb/registration-information/")
+@Route("v2/ppdb/registration-information/")
 @Tags("CMS", "Registration Information")
 export class PathRegistrationInformationController extends Controller {
 

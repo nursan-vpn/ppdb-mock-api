@@ -3,7 +3,7 @@ import { FAQ } from "../type/faq";
 import { PaginatedResponseEnvelope, ResponseEnvelope, ValidationError } from "../type/response";
 import { Body, Controller, Delete, Example, Get, Post, Put, Query, Response, Route, Tags } from "tsoa";
 
-@Route("/ppdb/faqs/")
+@Route("v2/ppdb/faqs/")
 @Tags("CMS","FAQs")
 export class FaqsController extends Controller {
 

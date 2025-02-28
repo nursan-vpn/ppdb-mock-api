@@ -2,7 +2,7 @@ import { PaginatedResponseEnvelope } from "../type/response";
 import { User, UserType } from "../type/user";
 import { Controller, Get, Query, Route, Tags } from "tsoa";
 
-@Route("ppdb/users/")
+@Route("v2/ppdb/users/")
 @Tags("User")
 export class UserController extends Controller {
 

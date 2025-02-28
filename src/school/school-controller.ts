@@ -5,7 +5,7 @@ import { School, SchoolDetail, SchoolType } from "../type/school";
 import { Controller, Example, Get, Query, Route, Tags } from "tsoa";
 
 
-@Route("ppdb/schools/")
+@Route("v2/ppdb/schools/")
 @Tags("School")
 export class SchoolController extends Controller {
 

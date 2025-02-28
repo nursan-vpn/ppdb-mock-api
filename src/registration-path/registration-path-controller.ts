@@ -5,7 +5,7 @@ import { PaginatedResponseEnvelope, ResponseEnvelope } from "../type/response";
 import { Body, Controller, Delete, Example, Get, Post, Put, Query, Route, Response, Tags } from "tsoa";
 
 
-@Route("ppdb/registration-paths/")
+@Route("v2/ppdb/registration-paths/")
 @Tags("Registration Path")
 export class RegistrationPathController extends Controller {
     

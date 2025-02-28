@@ -3,7 +3,7 @@ import { ResponseEnvelope, ValidationError } from "../type/response";
 import { Controller, Example, FormField, Get, Post, Route, Tags, UploadedFile, Response } from "tsoa";
 
 
-@Route("/ppdb/general-information/")
+@Route("v2/ppdb/general-information/")
 @Tags("CMS", "General Information")
 export class GeneralInformationController extends Controller {
 

@@ -3,7 +3,7 @@ import { ContactInfo } from "../type/contact";
 import { Body, Controller, Example, Get, Post, Route, Tags } from "tsoa";
 import { generateContactInfo } from "../faker/generator";
 
-@Route("/ppdb/contacts/")
+@Route("v2/ppdb/contacts/")
 @Tags("CMS", "Contact")
 export class ContactController extends Controller {
     
