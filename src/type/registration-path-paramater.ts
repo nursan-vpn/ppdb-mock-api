@@ -1,17 +1,10 @@
 import { RegistrationType } from "./common"
 
-/**
- * Enum representing different types of paramater.
- * 0 = Total nilai (Sorting from Highest to lowest), 
- * 1 = Umur (Sorting from Oldest to Youngest), 
- * 2 = Jarak  (terdekat - terjauh),  
- * 3 = Register Date (Oldest to Newest)
- */
 export enum RegistrationPathParameterType {
-    TOTAL_GRADE = '0',
-    AGE = '1',
-    DISTANCE = '2',
-    REGISTER_DATE = '3',
+    TOTAL_GRADE = 'total_nilai',
+    AGE = 'umur',
+    DISTANCE = 'jarak',
+    REGISTER_DATE = 'tanggal_pendaftaran',
 }
 
 
@@ -32,7 +25,7 @@ export type RegistrationPathCalculationParameter = {
      * 0 = Zoning, 1 = Achievement, 2 = Affirmation, 3 = Transfer, 4 = Custom
      */
     registration_type: RegistrationType[];
-    params: RegistrationPathParameter[];
+    params: RegistrationPathParameterType[];
 }
 
 export type RegistrationPathCalculationParameterResponse = {

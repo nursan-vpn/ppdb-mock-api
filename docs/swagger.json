@@ -542,38 +542,19 @@
 				"type": "string"
 			},
 			"RegistrationPathParameterType": {
-				"description": "Enum representing different types of paramater.\n0 = Total nilai (Sorting from Highest to lowest), \n1 = Umur (Sorting from Oldest to Youngest), \n2 = Jarak  (terdekat - terjauh),  \n3 = Register Date (Oldest to Newest)",
 				"enum": [
-					"0",
-					"1",
-					"2",
-					"3"
+					"total_nilai",
+					"umur",
+					"jarak",
+					"tanggal_pendaftaran"
 				],
 				"type": "string"
-			},
-			"RegistrationPathParameter": {
-				"properties": {
-					"order": {
-						"type": "number",
-						"format": "double",
-						"description": "Order of the parameter"
-					},
-					"type": {
-						"$ref": "#/components/schemas/RegistrationPathParameterType",
-						"description": "Parameter type"
-					}
-				},
-				"required": [
-					"order",
-					"type"
-				],
-				"type": "object"
 			},
 			"RegistrationPathCalculationParameter": {
 				"properties": {
 					"params": {
 						"items": {
-							"$ref": "#/components/schemas/RegistrationPathParameter"
+							"$ref": "#/components/schemas/RegistrationPathParameterType"
 						},
 						"type": "array"
 					},
@@ -591,21 +572,7 @@
 				],
 				"type": "object"
 			},
-			"RegistrationPathCalculationParameterResponse": {
-				"properties": {
-					"calculation_params": {
-						"items": {
-							"$ref": "#/components/schemas/RegistrationPathCalculationParameter"
-						},
-						"type": "array"
-					}
-				},
-				"required": [
-					"calculation_params"
-				],
-				"type": "object"
-			},
-			"ResponseEnvelope_RegistrationPathCalculationParameterResponse_": {
+			"ResponseEnvelope_RegistrationPathCalculationParameter-Array_": {
 				"properties": {
 					"code": {
 						"type": "number",
@@ -621,7 +588,10 @@
 						"description": "Message"
 					},
 					"data": {
-						"$ref": "#/components/schemas/RegistrationPathCalculationParameterResponse"
+						"items": {
+							"$ref": "#/components/schemas/RegistrationPathCalculationParameter"
+						},
+						"type": "array"
 					}
 				},
 				"required": [
@@ -2428,7 +2398,7 @@
 				]
 			}
 		},
-		"/v2/ppdb/registration-path-parameter": {
+		"/v2/ppdb/registration-paths/paramater": {
 			"get": {
 				"operationId": "GetRegistrationPathParameter",
 				"responses": {
@@ -2437,7 +2407,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/ResponseEnvelope_RegistrationPathCalculationParameterResponse_"
+									"$ref": "#/components/schemas/ResponseEnvelope_RegistrationPathCalculationParameter-Array_"
 								},
 								"examples": {
 									"Example 1": {
@@ -2445,65 +2415,40 @@
 											"code": 200,
 											"error": false,
 											"message": "",
-											"data": {
-												"calculation_params": [
-													{
-														"registration_type": [
-															"1"
-														],
-														"params": [
-															{
-																"type": "0",
-																"order": 1
-															},
-															{
-																"type": "1",
-																"order": 2
-															},
-															{
-																"type": "3",
-																"order": 3
-															}
-														]
-													},
-													{
-														"registration_type": [
-															"0"
-														],
-														"params": [
-															{
-																"type": "0",
-																"order": 1
-															},
-															{
-																"type": "1",
-																"order": 2
-															},
-															{
-																"type": "3",
-																"order": 3
-															}
-														]
-													},
-													{
-														"registration_type": [
-															"2",
-															"3",
-															"4"
-														],
-														"params": [
-															{
-																"type": "1",
-																"order": 2
-															},
-															{
-																"type": "3",
-																"order": 3
-															}
-														]
-													}
-												]
-											}
+											"data": [
+												{
+													"registration_type": [
+														"1"
+													],
+													"params": [
+														"total_nilai",
+														"umur",
+														"tanggal_pendaftaran"
+													]
+												},
+												{
+													"registration_type": [
+														"0"
+													],
+													"params": [
+														"total_nilai",
+														"umur",
+														"tanggal_pendaftaran"
+													]
+												},
+												{
+													"registration_type": [
+														"2",
+														"3",
+														"4"
+													],
+													"params": [
+														"total_nilai",
+														"umur",
+														"tanggal_pendaftaran"
+													]
+												}
+											]
 										}
 									}
 								}
@@ -2519,7 +2464,7 @@
 				"security": [],
 				"parameters": []
 			},
-			"patch": {
+			"put": {
 				"operationId": "UpdateRegistrationPathParameter",
 				"responses": {
 					"200": {
@@ -2527,7 +2472,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/ResponseEnvelope_RegistrationPathCalculationParameterResponse_"
+									"$ref": "#/components/schemas/ResponseEnvelope_RegistrationPathCalculationParameter-Array_"
 								},
 								"examples": {
 									"Example 1": {
@@ -2535,65 +2480,40 @@
 											"code": 200,
 											"error": false,
 											"message": "",
-											"data": {
-												"calculation_params": [
-													{
-														"registration_type": [
-															"1"
-														],
-														"params": [
-															{
-																"type": "0",
-																"order": 1
-															},
-															{
-																"type": "1",
-																"order": 2
-															},
-															{
-																"type": "3",
-																"order": 3
-															}
-														]
-													},
-													{
-														"registration_type": [
-															"0"
-														],
-														"params": [
-															{
-																"type": "0",
-																"order": 1
-															},
-															{
-																"type": "1",
-																"order": 2
-															},
-															{
-																"type": "3",
-																"order": 3
-															}
-														]
-													},
-													{
-														"registration_type": [
-															"2",
-															"3",
-															"4"
-														],
-														"params": [
-															{
-																"type": "1",
-																"order": 2
-															},
-															{
-																"type": "3",
-																"order": 3
-															}
-														]
-													}
-												]
-											}
+											"data": [
+												{
+													"registration_type": [
+														"1"
+													],
+													"params": [
+														"total_nilai",
+														"umur",
+														"tanggal_pendaftaran"
+													]
+												},
+												{
+													"registration_type": [
+														"0"
+													],
+													"params": [
+														"total_nilai",
+														"umur",
+														"tanggal_pendaftaran"
+													]
+												},
+												{
+													"registration_type": [
+														"2",
+														"3",
+														"4"
+													],
+													"params": [
+														"total_nilai",
+														"umur",
+														"tanggal_pendaftaran"
+													]
+												}
+											]
 										}
 									}
 								}
@@ -2613,7 +2533,10 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/RegistrationPathCalculationParameterResponse"
+								"items": {
+									"$ref": "#/components/schemas/RegistrationPathCalculationParameter"
+								},
+								"type": "array"
 							}
 						}
 					}
