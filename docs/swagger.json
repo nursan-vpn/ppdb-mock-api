@@ -234,6 +234,123 @@
 				],
 				"type": "string"
 			},
+			"ReRegistrationStatus": {
+				"enum": [
+					"Registered",
+					"Not Registered",
+					"Not Active"
+				],
+				"type": "string"
+			},
+			"SchoolApplicant": {
+				"properties": {
+					"re_registration_status": {
+						"$ref": "#/components/schemas/ReRegistrationStatus"
+					},
+					"accepted_school_name": {
+						"type": "string"
+					},
+					"registration_date": {
+						"type": "string",
+						"description": "ISO 8601 date string"
+					},
+					"school_level": {
+						"$ref": "#/components/schemas/SchoolLevel"
+					},
+					"registration_path": {
+						"type": "string",
+						"description": "Registration path name"
+					},
+					"nisn": {
+						"type": "string"
+					},
+					"dob": {
+						"type": "string",
+						"description": "Date of Birth in ISO 8601 date string"
+					},
+					"registration_id": {
+						"type": "string"
+					},
+					"full_name": {
+						"type": "string"
+					},
+					"id": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"re_registration_status",
+					"accepted_school_name",
+					"registration_date",
+					"school_level",
+					"registration_path",
+					"nisn",
+					"dob",
+					"registration_id",
+					"full_name",
+					"id"
+				],
+				"type": "object"
+			},
+			"PaginatedResponseEnvelope_SchoolApplicant_": {
+				"properties": {
+					"code": {
+						"type": "number",
+						"format": "double",
+						"description": "HTTP Response code"
+					},
+					"error": {
+						"type": "boolean",
+						"description": "Error flag"
+					},
+					"message": {
+						"type": "string",
+						"description": "Message"
+					},
+					"count": {
+						"type": "number",
+						"format": "double",
+						"description": "Total number of items"
+					},
+					"next": {
+						"type": "string",
+						"description": "Url of the next page"
+					},
+					"previous": {
+						"type": "string",
+						"description": "Url of the previous page"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/SchoolApplicant"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"code",
+					"error",
+					"message",
+					"count",
+					"next",
+					"previous",
+					"data"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"RegistrationType": {
+				"description": "Enum representing different types of registration.\n0 = Zoning, 1 = Achievement, 2 = Affirmation, 3 = Transfer, 4 = Custom",
+				"enum": [
+					"0",
+					"1",
+					"2",
+					"3",
+					"4"
+				],
+				"type": "string"
+			},
 			"SchoolType": {
 				"enum": [
 					"Private",
@@ -529,17 +646,6 @@
 					"id"
 				],
 				"type": "object"
-			},
-			"RegistrationType": {
-				"description": "Enum representing different types of registration.\n0 = Zoning, 1 = Achievement, 2 = Affirmation, 3 = Transfer, 4 = Custom",
-				"enum": [
-					"0",
-					"1",
-					"2",
-					"3",
-					"4"
-				],
-				"type": "string"
 			},
 			"RegistrationPathParameterType": {
 				"enum": [
@@ -2208,6 +2314,96 @@
 							"items": {
 								"$ref": "#/components/schemas/UserType"
 							}
+						}
+					}
+				]
+			}
+		},
+		"/v2/ppdb/final-result": {
+			"get": {
+				"operationId": "GetApplicants",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PaginatedResponseEnvelope_SchoolApplicant_"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"code": 200,
+											"error": false,
+											"message": "Success",
+											"count": 100,
+											"next": "",
+											"previous": "",
+											"data": [
+												{
+													"id": 1,
+													"accepted_school_name": "School 1",
+													"dob": "2025-03-12T06:44:33.969Z",
+													"full_name": "John Doe",
+													"nisn": "12345678",
+													"re_registration_status": "Registered",
+													"registration_path": "Jalur Langit",
+													"registration_id": "2938493843",
+													"registration_date": "2025-03-12T06:44:33.969Z",
+													"school_level": "2"
+												}
+											]
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Get School Final applicant",
+				"summary": "Get all school final applicant",
+				"tags": [
+					"School Applicant"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "Page number",
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"default": 1,
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "Number of items per page",
+						"in": "query",
+						"name": "page_size",
+						"required": false,
+						"schema": {
+							"default": 10,
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "registration_type",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/RegistrationType"
+						}
+					},
+					{
+						"description": "Search keyword",
+						"in": "query",
+						"name": "search",
+						"required": false,
+						"schema": {
+							"type": "string"
 						}
 					}
 				]
