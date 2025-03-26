@@ -1064,12 +1064,19 @@
 					},
 					"payment_config": {
 						"$ref": "#/components/schemas/RegistrationPathPaymentConfig"
+					},
+					"zoneId": {
+						"type": "number",
+						"format": "double",
+						"nullable": true,
+						"description": "Registration path zone id, null if the registration path is not zone-based."
 					}
 				},
 				"required": [
 					"general",
 					"configuration",
-					"schools"
+					"schools",
+					"zoneId"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -1133,6 +1140,12 @@
 					"payment_config": {
 						"$ref": "#/components/schemas/RegistrationPathPaymentConfig"
 					},
+					"zoneId": {
+						"type": "number",
+						"format": "double",
+						"nullable": true,
+						"description": "Registration path zone id, null if the registration path is not zone-based."
+					},
 					"has_applicant": {
 						"type": "boolean",
 						"description": "Boolean value indicating whether the registration path has applicant or not."
@@ -1142,6 +1155,7 @@
 					"general",
 					"configuration",
 					"schools",
+					"zoneId",
 					"has_applicant"
 				],
 				"type": "object",
@@ -2946,6 +2960,7 @@
 														"BANK_TRANSFER"
 													]
 												},
+												"zoneId": null,
 												"has_applicant": false
 											}
 										}

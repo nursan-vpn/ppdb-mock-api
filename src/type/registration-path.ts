@@ -165,6 +165,10 @@ export interface RegistrationPathPayload {
      */
     schools: number[];
     payment_config?: RegistrationPathPaymentConfig;
+    /**
+     * Registration path zone id, null if the registration path is not zone-based.
+     */
+    zoneId: number | null;
 }
 
 

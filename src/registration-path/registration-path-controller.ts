@@ -142,6 +142,7 @@ export class RegistrationPathController extends Controller {
                     RegistrationPathPaymentMethod.BANK_TRANSFER
                 ]
             },
+            zoneId: null,
             has_applicant: false
         }
     })
@@ -205,6 +206,7 @@ export class RegistrationPathController extends Controller {
                         RegistrationPathPaymentMethod.BANK_TRANSFER
                     ]
                 },
+                zoneId: null,
                 has_applicant: false
             }
         }
