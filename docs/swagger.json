@@ -2519,6 +2519,16 @@
 						"schema": {
 							"type": "string"
 						}
+					},
+					{
+						"description": "get schools based on zone id",
+						"in": "query",
+						"name": "zone_id",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
 					}
 				]
 			}
