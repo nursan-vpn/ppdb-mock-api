@@ -1065,7 +1065,7 @@
 					"payment_config": {
 						"$ref": "#/components/schemas/RegistrationPathPaymentConfig"
 					},
-					"zoneId": {
+					"zone_id": {
 						"type": "number",
 						"format": "double",
 						"nullable": true,
@@ -1076,7 +1076,7 @@
 					"general",
 					"configuration",
 					"schools",
-					"zoneId"
+					"zone_id"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -1140,7 +1140,7 @@
 					"payment_config": {
 						"$ref": "#/components/schemas/RegistrationPathPaymentConfig"
 					},
-					"zoneId": {
+					"zone_id": {
 						"type": "number",
 						"format": "double",
 						"nullable": true,
@@ -1155,7 +1155,7 @@
 					"general",
 					"configuration",
 					"schools",
-					"zoneId",
+					"zone_id",
 					"has_applicant"
 				],
 				"type": "object",
@@ -2960,7 +2960,7 @@
 														"BANK_TRANSFER"
 													]
 												},
-												"zoneId": null,
+												"zone_id": null,
 												"has_applicant": false
 											}
 										}

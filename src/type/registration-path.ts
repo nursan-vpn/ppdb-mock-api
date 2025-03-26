@@ -168,7 +168,7 @@ export interface RegistrationPathPayload {
     /**
      * Registration path zone id, null if the registration path is not zone-based.
      */
-    zoneId: number | null;
+    zone_id: number | null;
 }
 
 
