@@ -6,6 +6,7 @@ import { ContactInfo } from "../type/contact";
 import { Announcement } from "../type/announcement";
 import { School, SchoolType } from "../type/school";
 import { RegistrationPath, RegistrationPathStatus } from "../type/registration-path";
+import { ReRegistrationStatus, SchoolApplicant } from "../type/school-applicant";
 
 export function getRegistrationInfo(count = 10): RegistrationInformation[] {
     let result = [];
@@ -117,5 +118,28 @@ export function generateRegistrationPath(levels?: SchoolLevel[], types?: Registr
         end_date: faker.date.future().toISOString(),
         is_have_payment: faker.datatype.boolean(),
         status: faker.helpers.enumValue(RegistrationPathStatus),
+    }
+}
+
+export function generateAcceptedApplicants(count = 10): SchoolApplicant[] {
+    let result = [];
+    for (let i = 0; i < count; i++) {
+        result.push(generateAcceptedApplicant())
+    }
+    return result;
+}
+
+export function generateAcceptedApplicant(): SchoolApplicant {
+    return {
+        id: faker.number.int({ min: 1, max: 100 }),
+        accepted_school_name: faker.company.name(),
+        dob: faker.date.past({years: 14}).toISOString(),
+        full_name: faker.person.fullName(),
+        nisn: faker.string.numeric({ length: 8 }),
+        re_registration_status: faker.helpers.enumValue(ReRegistrationStatus),
+        registration_path: faker.person.jobDescriptor(),
+        registration_id: faker.string.numeric({ length: 10 }),
+        registration_date: faker.date.recent().toISOString(),
+        school_level: faker.helpers.enumValue(SchoolLevel)
     }
 }

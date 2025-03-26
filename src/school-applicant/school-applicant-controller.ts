@@ -1,3 +1,4 @@
+import { generateAcceptedApplicants } from "../faker/generator";
 import { RegistrationType, SchoolLevel } from "../type/common";
 import { PaginatedResponseEnvelope } from "../type/response";
 import { ReRegistrationStatus, SchoolApplicant } from "../type/school-applicant";
@@ -46,6 +47,7 @@ export class SchoolApplicantController extends Controller {
         @Query() search?: string,
     ): Promise<PaginatedResponseEnvelope<SchoolApplicant>> {
         console.log(registration_type);
+        let data = generateAcceptedApplicants(page_size);
         return {
             code: 200,
             error: false,
@@ -53,20 +55,7 @@ export class SchoolApplicantController extends Controller {
             count: 100,
             next: "",
             previous: "",
-            data: [
-                {
-                    id: 1,
-                    accepted_school_name: "School 1",
-                    dob: "2025-03-12T06:44:33.969Z",
-                    full_name: "John Doe",
-                    nisn: "12345678",
-                    re_registration_status: ReRegistrationStatus.REGISTERED,
-                    registration_path: 'Jalur Langit',
-                    registration_id: '2938493843',
-                    registration_date: '2025-03-12T06:44:33.969Z',
-                    school_level: SchoolLevel.HIGH_SCHOOL
-                }
-            ]
+            data: data
         }
     }
 
