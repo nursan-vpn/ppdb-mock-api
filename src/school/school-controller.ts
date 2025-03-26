@@ -17,6 +17,7 @@ export class SchoolController extends Controller {
      * @param search Search keyword
      * @param levels filter by school levels
      * @param ids filter by school ids
+     * @param zone_id get schools based on zone id
      */
     @Get("")
     @Example<PaginatedResponseEnvelope<School>>({
@@ -44,6 +45,7 @@ export class SchoolController extends Controller {
         @Query() search?: string,
         @Query() levels?: SchoolLevel[], // Array of SchoolLevel
         @Query() ids?: string,
+        @Query() zone_id?: number
     ): Promise<PaginatedResponseEnvelope<School>> {
         let data = generateSchools(page_size, levels)
         let schoolIds = ids?.split(",").map(id => parseInt(id)) ?? [];
