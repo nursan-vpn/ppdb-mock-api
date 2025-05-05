@@ -2,8 +2,8 @@ import { faker } from "@faker-js/faker";
 import { generatePathInformation, getRegistrationInfo } from "../faker/generator";
 import { RegistrationType, SchoolLevel } from "../type/common";
 import { RegistrationInformation, RegistrationInformationDetailType, RegistrationInformationWithDetails } from "../type/registration-information";
-import { PaginatedResponseEnvelope, ResponseEnvelope } from "../type/response";
-import { Body, Controller, Example, Get, Post, Put, Query, Route, Tags } from "tsoa";
+import { PaginatedResponseEnvelope, ResponseEnvelope, ValidationError } from "../type/response";
+import { Body, Controller, Example, Get, Post, Put, Query, Route, Tags, Response } from "tsoa";
 
 @Route("v2/ppdb/registration-information/")
 @Tags("CMS", "Registration Information")
@@ -124,6 +124,14 @@ export class PathRegistrationInformationController extends Controller {
             quota: 50
         }
     })
+    @Response<DuplicateTitleResponse>("400", "Duplicate Name", {
+        code: 400,
+        error: true,
+        message: "Name is duplicate",
+        data: {
+            name: ["name_is_duplicate"]
+        }
+    })
     public async createRegistrationInformation(
         @Body() payload: Omit<RegistrationInformation, "id">
     ): Promise<ResponseEnvelope<RegistrationInformation>> {
@@ -165,4 +173,17 @@ export class PathRegistrationInformationController extends Controller {
             "data": data
         }
     }
+}
+
+
+type DuplicateTitleResponse = {
+    code: 400;
+    error: true;
+    message: string;
+    data: {
+        /**
+         * for duplicate name, it must be an array with string "name_is_duplicate" as the item
+         */
+        name: string[]
+    };
 }

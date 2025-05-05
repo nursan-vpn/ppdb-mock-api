@@ -1577,6 +1577,49 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"DuplicateTitleResponse": {
+				"properties": {
+					"data": {
+						"properties": {
+							"name": {
+								"items": {
+									"type": "string"
+								},
+								"type": "array",
+								"description": "for duplicate name, it must be an array with string \"name_is_duplicate\" as the item"
+							}
+						},
+						"required": [
+							"name"
+						],
+						"type": "object"
+					},
+					"message": {
+						"type": "string"
+					},
+					"error": {
+						"type": "boolean",
+						"enum": [
+							true
+						],
+						"nullable": false
+					},
+					"code": {
+						"type": "number",
+						"enum": [
+							400
+						],
+						"nullable": false
+					}
+				},
+				"required": [
+					"data",
+					"message",
+					"error",
+					"code"
+				],
+				"type": "object"
+			},
 			"Pick_RegistrationInformation.Exclude_keyofRegistrationInformation.id__": {
 				"properties": {
 					"name": {
@@ -3454,6 +3497,30 @@
 												"level": "0",
 												"type": "0",
 												"quota": 50
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Duplicate Name",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/DuplicateTitleResponse"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"code": 400,
+											"error": true,
+											"message": "Name is duplicate",
+											"data": {
+												"name": [
+													"name_is_duplicate"
+												]
 											}
 										}
 									}
