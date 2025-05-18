@@ -89,8 +89,11 @@ type RegistrationPathConfig = {
          * Field ordering
          */
         ordering: number;
-
         is_editable: boolean;
+        /**
+         * Field\`s point, nullable, null if the field`s type its not a Document.
+         */
+        point: number|null;
     }[],
     is_deleteable: boolean;
     is_editable: boolean;

@@ -120,7 +120,8 @@ export class RegistrationPathController extends Controller {
                             ordering: 1,
                             title: "Field 1",
                             id: 1,
-                            is_editable: true
+                            is_editable: true,
+                            point:null
                         }
                     ],
                     name: "General",
@@ -183,8 +184,8 @@ export class RegistrationPathController extends Controller {
                                 ordering: 1,
                                 title: "Field 1",
                                 id: 1,
-                                is_editable: true
-
+                                is_editable: true,
+                                point: null
                             }
                         ],
                         name: "General",

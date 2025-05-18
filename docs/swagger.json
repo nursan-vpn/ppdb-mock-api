@@ -864,6 +864,12 @@
 					"fields": {
 						"items": {
 							"properties": {
+								"point": {
+									"type": "number",
+									"format": "double",
+									"nullable": true,
+									"description": "Field\\`s point, nullable, null if the field`s type its not a Document."
+								},
 								"is_editable": {
 									"type": "boolean"
 								},
@@ -911,6 +917,7 @@
 								}
 							},
 							"required": [
+								"point",
 								"is_editable",
 								"ordering",
 								"options",
@@ -2986,7 +2993,8 @@
 																"ordering": 1,
 																"title": "Field 1",
 																"id": 1,
-																"is_editable": true
+																"is_editable": true,
+																"point": null
 															}
 														],
 														"name": "General",
