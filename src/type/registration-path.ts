@@ -48,12 +48,25 @@ export enum RegistrationPathFieldType {
     DOCUMENT = `5`
 }
 
+/**
+ * Enum to describe the field group type
+ */
+export enum RegistrationPathConfigType {
+	ACADEMIC = 'ACADEMIC',
+	NON_ACADEMIC = 'NON_ACADEMIC',
+	CUSTOM = 'CUSTOM',
+}
+
 type RegistrationPathConfig = {
     id?: number;
     /**
      * Fields group name
      */
     name: string;
+    /**
+	 * Config type
+	 */
+	type: RegistrationPathConfigType;
     /**
      * List of fields in the group
      */

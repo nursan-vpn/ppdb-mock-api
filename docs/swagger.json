@@ -841,6 +841,15 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"RegistrationPathConfigType": {
+				"description": "Enum to describe the field group type",
+				"enum": [
+					"ACADEMIC",
+					"NON_ACADEMIC",
+					"CUSTOM"
+				],
+				"type": "string"
+			},
 			"RegistrationPathFieldType": {
 				"description": "0 = Text, 1 = Number, 2 = Choice, 3 = Multiple Choice, 4 = Date, 5 = Document",
 				"enum": [
@@ -930,6 +939,10 @@
 						"type": "array",
 						"description": "List of fields in the group"
 					},
+					"type": {
+						"$ref": "#/components/schemas/RegistrationPathConfigType",
+						"description": "Config type"
+					},
 					"name": {
 						"type": "string",
 						"description": "Fields group name"
@@ -943,6 +956,7 @@
 					"is_editable",
 					"is_deleteable",
 					"fields",
+					"type",
 					"name"
 				],
 				"type": "object"
@@ -2976,6 +2990,7 @@
 												"configuration": [
 													{
 														"id": 1,
+														"type": "CUSTOM",
 														"fields": [
 															{
 																"field_type": "2",

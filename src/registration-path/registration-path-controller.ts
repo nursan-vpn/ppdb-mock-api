@@ -1,6 +1,6 @@
 import { generateRegistrationPaths } from "../faker/generator";
 import { RegistrationType, SchoolLevel } from "../type/common";
-import { RegistrationPath, RegistrationPathBillingScheduleType, RegistrationPathDetail, RegistrationPathFieldType, RegistrationPathPayload, RegistrationPathPayment, RegistrationPathPaymentMethod, RegistrationPathPaymentStatus, RegistrationPathStatus } from "../type/registration-path";
+import { RegistrationPath, RegistrationPathBillingScheduleType, RegistrationPathConfigType, RegistrationPathDetail, RegistrationPathFieldType, RegistrationPathPayload, RegistrationPathPayment, RegistrationPathPaymentMethod, RegistrationPathPaymentStatus, RegistrationPathStatus } from "../type/registration-path";
 import { PaginatedResponseEnvelope, ResponseEnvelope } from "../type/response";
 import { Body, Controller, Delete, Example, Get, Post, Put, Query, Route, Response, Tags } from "tsoa";
 
@@ -103,6 +103,7 @@ export class RegistrationPathController extends Controller {
             configuration: [
                 {
                     id: 1,
+                    type: RegistrationPathConfigType.CUSTOM,
                     fields: [
                         {
                             field_type: RegistrationPathFieldType.CHOICE,
@@ -167,6 +168,7 @@ export class RegistrationPathController extends Controller {
                 configuration: [
                     {
                         id: 1,
+                        type: RegistrationPathConfigType.CUSTOM,
                         fields: [
                             {
                                 field_type: RegistrationPathFieldType.CHOICE,
