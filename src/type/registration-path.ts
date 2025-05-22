@@ -49,12 +49,13 @@ export enum RegistrationPathFieldType {
 }
 
 /**
- * Enum to describe the field group type
+ * Enum to describe the field group type,
+ * 0 = Academic, 1 = Non Academic, 2 = Custom
  */
 export enum RegistrationPathConfigType {
-	ACADEMIC = 'ACADEMIC',
-	NON_ACADEMIC = 'NON_ACADEMIC',
-	CUSTOM = 'CUSTOM',
+	ACADEMIC = '0',
+	NON_ACADEMIC = '1',
+	CUSTOM = '2',
 }
 
 type RegistrationPathConfig = {

@@ -842,11 +842,11 @@
 				"additionalProperties": false
 			},
 			"RegistrationPathConfigType": {
-				"description": "Enum to describe the field group type",
+				"description": "Enum to describe the field group type,\n0 = Academic, 1 = Non Academic, 2 = Custom",
 				"enum": [
-					"ACADEMIC",
-					"NON_ACADEMIC",
-					"CUSTOM"
+					"0",
+					"1",
+					"2"
 				],
 				"type": "string"
 			},
@@ -2990,7 +2990,7 @@
 												"configuration": [
 													{
 														"id": 1,
-														"type": "CUSTOM",
+														"type": "2",
 														"fields": [
 															{
 																"field_type": "2",
