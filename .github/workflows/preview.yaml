@@ -23,6 +23,7 @@ jobs:
           yarn add @redocly/cli
           yarn redocly build-docs ./docs/swagger.json --output ./docs/index.html
       - uses: rossjrw/pr-preview-action@v1
+        id: preview-step
         with:
           source-dir: docs
           preview-branch: gh-pages
