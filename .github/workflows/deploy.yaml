@@ -1,5 +1,13 @@
 name: Build and Deploy
-on: [push]
+on: 
+  push:
+    branches:
+      - main # The branch you want to deploy from. Change this if your main branch is named differently.
+  pull_request:
+    branches:
+      - main # The branch you want to deploy from. Change this if your main branch is named differently.
+  workflow_dispatch: # Allows manual triggering of the workflow.
+  
 permissions:
   contents: write
 jobs:
