@@ -19,5 +19,4 @@ export type Announcement = {
      */
     updated_at: string;
     created_by: string;
-    deleted_at?: string | null;
 }
