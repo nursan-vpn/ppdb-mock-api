@@ -49,7 +49,7 @@ export function generateContactInfo(): ContactInfo {
     return {
         address: faker.location.streetAddress(),
         email: faker.internet.email(),
-        phone: faker.string.numeric({ length: 11 }),
+        phone: faker.string.numeric({ length: 12 }),
         alternative_phone: faker.string.numeric({ length: 11 }),
         other_phone: faker.string.numeric({ length: 11 }),
         whatsapp: faker.string.numeric({ length: 11 }),
