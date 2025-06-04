@@ -36,7 +36,6 @@ export type ApplicantUser = {
     last_name: string,
     email: string,
     school: string;
-    registration_number?: string;
 }
 
 export type User = SchoolAdminUser | OfficialUser | ApplicantUser;
