@@ -2151,6 +2151,10 @@
 			},
 			"Announcement": {
 				"properties": {
+					"deleted_at": {
+						"type": "string",
+						"nullable": true
+					},
 					"created_by": {
 						"type": "string"
 					},
