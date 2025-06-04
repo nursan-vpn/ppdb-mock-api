@@ -24,6 +24,7 @@ export class FaqsController extends Controller {
                 id: 1,
                 title: "Test Question",
                 description: "This is a test question",
+                created_at: "2023-10-01T00:00:00Z"
             }
         ]
     })
@@ -57,6 +58,7 @@ export class FaqsController extends Controller {
             id: 1,
             title: "Test Question",
             description: "This is a test question",
+            created_at: "2023-10-01T00:00:00Z"
         }
     })
     @Response<ValidationError<FAQ>>(400, "Validation Error", {
@@ -98,6 +100,7 @@ export class FaqsController extends Controller {
             id: 1,
             title: "Test Question",
             description: "This is a test question",
+            created_at: "2023-10-01T00:00:00Z"
         }
     })
     public async getFaq(id: number): Promise<ResponseEnvelope<FAQ>> {
@@ -123,6 +126,7 @@ export class FaqsController extends Controller {
             id: 1,
             title: "Test Question",
             description: "This is a test question",
+            created_at: "2023-10-01T00:00:00Z"
         }
     })
     @Response<ValidationError<FAQ>>(400, "Validation Error", {
