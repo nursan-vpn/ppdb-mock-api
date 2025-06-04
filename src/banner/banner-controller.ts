@@ -1,8 +1,8 @@
 import { Banner } from "../type/banner";
 import { ResponseEnvelope } from "../type/response";
-import { Body, Controller, Example, FormField, Get, Patch, Post, Put, Response, Route, Security, Tags, UploadedFile } from "tsoa";
+import { Controller, Example, FormField, Get, Patch, Post, Put, Response, Route, Security, Tags, UploadedFile } from "tsoa";
 
-@Route("v2/ppdb/banner")
+@Route("v2/ppdb/banners")
 @Tags("CMS", "Banner")
 export class BannerController extends Controller {
 

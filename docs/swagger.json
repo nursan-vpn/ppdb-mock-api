@@ -4243,7 +4243,7 @@
 				}
 			}
 		},
-		"/v2/ppdb/banner": {
+		"/v2/ppdb/banners": {
 			"get": {
 				"operationId": "GetBanner",
 				"responses": {
@@ -4370,7 +4370,7 @@
 				}
 			}
 		},
-		"/v2/ppdb/banner/{id}": {
+		"/v2/ppdb/banners/{id}": {
 			"patch": {
 				"operationId": "UpdateBanner",
 				"responses": {
