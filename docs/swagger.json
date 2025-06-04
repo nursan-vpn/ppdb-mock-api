@@ -2023,6 +2023,10 @@
 			},
 			"Banner": {
 				"properties": {
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
 					"picture": {
 						"type": "string",
 						"description": "Picture URL"

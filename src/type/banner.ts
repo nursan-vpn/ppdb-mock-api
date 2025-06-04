@@ -6,4 +6,5 @@ export type Banner = {
      * Picture URL
      */
 	picture: string;
+	createdAt?: Date;
 };
