@@ -1,13 +1,17 @@
 name: Build and Deploy
 on: 
   push:
+    paths:
+      - 'docs/swagger.json'
     branches:
       - main # The branch you want to deploy from. Change this if your main branch is named differently.
   pull_request:
+    paths:
+      - 'docs/swagger.json'
     branches:
       - main # The branch you want to deploy from. Change this if your main branch is named differently.
   workflow_dispatch: # Allows manual triggering of the workflow.
-  
+
 permissions:
   contents: write
 jobs:
@@ -20,10 +24,11 @@ jobs:
 
       - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
         run: |
-          yarn install
-          yarn build
-
+          yarn install redocly
+          yarn redocly build-docs ./docs/swagger.json --output ./docs/index.html
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: docs # The folder the action should deploy.
+          branch: gh-pages # The branch the action should deploy to.
+          clean-exclude: pr-preview/
