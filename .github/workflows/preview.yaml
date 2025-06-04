@@ -7,16 +7,21 @@ on:
       - reopened
       - synchronize
       - closed
+    paths:
+      - 'docs/swagger.json'
 jobs:
   deploy-preview:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm i && npm run build
+      - name: Build the docs
         if: github.event.action != 'closed'
+        run: |
+          yarn add @redocly/cli
+          yarn redocly build-docs ./docs/swagger.json --output ./docs/index.html
       - uses: rossjrw/pr-preview-action@v1
         with:
-          source-dir: ./docs/
+          source-dir: docs
           preview-branch: gh-pages
           umbrella-dir: pr-preview
           action: auto
