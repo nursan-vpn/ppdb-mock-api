@@ -4,7 +4,7 @@ import { PaginatedResponseEnvelope, ResponseEnvelope, ValidationError } from "..
 import { Body, Delete, Example, FormField, Get, Post, Put, Query, Response, Route, Tags, UploadedFile } from "tsoa";
 import { generateAnnouncements } from "../faker/generator";
 
-@Route("v2/ppdb/announcement/")
+@Route("v2/ppdb/announcements/")
 @Tags("Announcement")
 export class AnnouncementController {
     

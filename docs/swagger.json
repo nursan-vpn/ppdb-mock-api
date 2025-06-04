@@ -4447,7 +4447,7 @@
 				}
 			}
 		},
-		"/v2/ppdb/announcement": {
+		"/v2/ppdb/announcements": {
 			"get": {
 				"operationId": "GetAnnouncements",
 				"responses": {
@@ -4615,7 +4615,7 @@
 				}
 			}
 		},
-		"/v2/ppdb/announcement/{id}": {
+		"/v2/ppdb/announcements/{id}": {
 			"get": {
 				"operationId": "GetAnnouncement",
 				"responses": {
