@@ -121,9 +121,6 @@
 			},
 			"ApplicantUser": {
 				"properties": {
-					"registration_number": {
-						"type": "string"
-					},
 					"school": {
 						"type": "string"
 					},
