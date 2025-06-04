@@ -4,12 +4,7 @@ on:
     paths:
       - 'docs/swagger.json'
     branches:
-      - main # The branch you want to deploy from. Change this if your main branch is named differently.
-  pull_request:
-    paths:
-      - 'docs/swagger.json'
-    branches:
-      - main # The branch you want to deploy from. Change this if your main branch is named differently.
+      - main 
   workflow_dispatch: # Allows manual triggering of the workflow.
 
 permissions:
